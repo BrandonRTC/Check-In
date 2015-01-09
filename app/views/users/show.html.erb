@@ -1,2 +1,32 @@
 <h1><%= @user.username %> Home Page</h1>
 
+<!--
+basic user SHOW page shows a group of tours to be performed for a given night
+each tour element consists of a displayed time with a button, in fact, the time might just go on the button
+make the buttons nice and big and easy to understand
+
+once the button is pressed, we redirect the user to the NEW tour page, which requires a selfie image to be uploaded
+once the tour has been submitted, we redirect the user to the NEW check-in page
+
+if the user is an administrator, the site directs him/her to the house INDEX page
+
+
+that home page instead shows several house elements, with their associated tours
+the tours might rotate in and out as time goes by, to avoid clutter (previous hour, current hour, next hour, 12 total?) 
+move the above 2 lines the the house index view
+-->
+
+
+<a href="<%= new_tour_url %>">
+	<button><% next_tour_time.strftime("%l:%M") %></button>
+</a>
+
+
+
+<!-- 
+
+make the list divs with only one clickable?
+
+**just make one button and display the next tour time, no need to display the rest of them**
+
+-->

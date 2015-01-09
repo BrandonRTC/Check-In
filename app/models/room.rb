@@ -1,11 +1,7 @@
 class Room < ActiveRecord::Base
 
-	#validations!
-
-	#associations!
-	belongs_to :tour
+	# belongs_to :tour
+	belongs_to :house
 	has_many :check_ins
-
-	#functions!
 
 end

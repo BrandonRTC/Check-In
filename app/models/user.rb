@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+	has_one :house
+
 	validates :username, presence: true
 	validates :password_digest, presence: {message: "Password can't be blank"}
 	validates :password, length: {minimum: 6, allow_nil: true}
@@ -32,6 +34,10 @@ class User < ActiveRecord::Base
 
 	def is_password?(password)
 		Bcrypt::Password.new(self.password_digest).is_password?(password) 
+	end
+
+	def superuser?
+		!!superuser
 	end
 
 	private

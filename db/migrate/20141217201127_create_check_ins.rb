@@ -5,9 +5,11 @@ class CreateCheckIns < ActiveRecord::Migration
     	t.string :initials
     	t.string :comment
     	t.integer :room_id, null: false
+      t.integer :tour_id, null: false
 
       t.timestamps
     end
     add_index :check_ins, :room_id
+    add_index :check_ins, :tour_id
   end
 end

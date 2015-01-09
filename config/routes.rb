@@ -12,10 +12,15 @@ Rails.application.routes.draw do
     resources :tours, only: [:index]
   end
 
-  resources :tours, only: [:index, :new, :create, :destroy]
-  resources :check_ins, only: [:index, :new, :create, :destroy]
-  #is create necessary here?
+  resources :tours, only: [:index, :new, :create, :destroy] do 
+    resources :check_ins, only: [:new]
+    #look up how to put tour_id into post body
+  end
 
+  resources :check_ins, only: [:index, :create, :destroy]
+
+  #-------------------------------------------
+  #-------------------------------------------
   #-------------------------------------------
 
   # The priority is based upon order of creation: first created -> highest priority.
