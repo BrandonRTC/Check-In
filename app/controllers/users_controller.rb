@@ -24,8 +24,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		#load up instance variables/data for tours
-
 		#double check this to make sure it works properly
 		@user = User.find(current_user.id) #can also use params[:id]
 		render :show

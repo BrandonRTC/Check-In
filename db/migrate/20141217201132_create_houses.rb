@@ -6,6 +6,6 @@ class CreateHouses < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :houses, :user_id, unique: true
+    add_index :houses, :user_id
   end
 end

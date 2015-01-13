@@ -1,0 +1,38 @@
+<!-- MAKE THIS PAGE A PARTIAL -->
+
+<!-- write helper method to multiply forms by number of beds in the room
+need to use aA hack to send data as an 'array'
+need that 'array' to create multiple check-in objects at controller level
+(ActiveRecord takes an array to create multiple objects at once) -->
+
+<h1>NEW CHECK IN</h1>
+
+<!-- QR SCANNER GOES HERE sends ajax request (to room controller? to check_in controller API?) get num_beds for the room-->
+
+<form action="<% check_ins_url %>" method="post">
+	<label for="check_in_status_awake">Awake</label>
+	<input type="radio" name="check_in[:status]" id="check_in_status_awake" value="awake">
+	
+	<label for="check_in_status_sleep">Asleep</label>
+	<input type="radio" name="check_in[:status]" id="check_in_status_sleep" value="sleep">
+	
+	<label for="check_in_status_bathroom">Bathroom</label>
+	<input type="radio" name="check_in[:status]" id="check_in_status_bathroom" value="bathroom">
+	
+	<label for="check_in_status_pass">Pass</label>
+	<input type="radio" name="check_in[:status]" id="check_in_status_pass" value="pass">
+	
+	<label for="check_in_status_awol">AWOL</label>
+	<input type="radio" name="check_in[:status]" id="check_in_status_awol" value="awol">
+
+	<input type="text" name="check_in[:initials]">
+	<input type="textarea" name="check_in[:comment]">
+
+	<!-- this will fill out based on QR scan; need to write javascript to multiply the forms by the rooms num_beds value  -->
+	<input type="hidden" name="check_in[:room_id]" value="">
+
+	<!-- probably should push this to check_in controller; need to write methods to assess current tour/room -->
+	<input type="hidden" name="check_in[:tour_id]" value="">
+
+	<input type="submit" value="Submit Room">
+</form>

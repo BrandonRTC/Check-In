@@ -21,3 +21,6 @@ module BrandonApp
     # config.i18n.default_locale = :de
   end
 end
+
+# config.time_zone = "Eastern Time (US & Canada)"
+# #HOPE THIS WORKS!

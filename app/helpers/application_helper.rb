@@ -1,6 +1,12 @@
 module 
 
-	#maybe a little brittle, but should work, come back later
+	def auth_token
+		<<-HTML.html_safe
+			<input type="hidden" name="authenticity_token" value="#{form_authenticity_token}">
+		HTML
+	end
+
+	#maybe a little brittle, but should work; come back later
 
 	def next_tour_time
 		time = Time.now
@@ -21,5 +27,5 @@ module
 		end
 
 	end
-	
+
 end

@@ -1,5 +1,11 @@
 class ToursController < ApplicationController
 
+	def index
+		@tours = Tour.where#date == current day
+
+		#render json here for dynamic page
+	end
+
 	def new 
 		@tour = Tour.new
 	end
@@ -10,7 +16,7 @@ class ToursController < ApplicationController
 		@tour = current_user.house.tours.new(tour_params)
 
 		if @tour.save
-			redirect_to new_check_in_url
+			redirect_to new_tour_check_in_url(@tour)
 		else
 			flash.now[:errors] = @tour.errors.full_messages
 			render :new
