@@ -11,121 +11,127 @@
 User.create({
 	name: "Chas",
 	password: "password",
-	superuser: true
-})
+	permissions: 0})
 
 User.create({
 	name: "House1_first",
-	password: "house1pass"
-	superuser: false
+	password: "house1pass",
+	permissions: 1
 })
 
 User.create({
-	name: "House1_second"
-	password: "house1pass2"
-	superuser: false
+	name: "House1_second",
+	password: "house1pass2",
+	permissions: 1
 })
 
 User.create({
 	name: "House2_first",
-	password: "house2pass"
-	superuser: false
+	password: "house2pass",
+	permissions: 2
 })
 
 User.create({
 	name: "House2_second",
-	password: "house2pass2"
-	superuser: false
+	password: "house2pass2",
+	permissions: 2
 })
 
 User.create({
 	name: "House3_first",
-	password: "house3pass"
-	superuser: false
+	password: "house3pass",
+	permissions: 3
 })
 
 User.create({
 	name: "House3_second",
-	password: "house3pass2"
-	superuser: false
+	password: "house3pass2",
+	permissions: 3
 })
 
 User.create({
 	name: "House4_first",
-	password: "house4pass"
-	superuser: false
+	password: "house4pass",
+	permissions: 4
 })
 
 User.create({
 	name: "House4_second",
-	password: "house4pass2"
-	superuser: false
+	password: "house4pass2",
+	permissions: 4
 })
 
 User.create({
 	name: "House5_first",
-	password: "house5pass"
-	superuser: false
+	password: "house5pass",
+	permissions: 5
 })
 
 User.create({
 	name: "House5_second",
-	password: "house5pass2"
-	superuser: false
+	password: "house5pass2",
+	permissions: 5
 })
 
 User.create({
 	name: "CB_first",
-	password: "cbpass"
-	superuser: false
+	password: "cbpass",
+	permissions: 6
 })
 
 User.create({
 	name: "CB_second",
-	password: "cbpass2"
-	superuser: false
+	password: "cbpass2",
+	permissions: 6
 })
 
 User.create({
 	name: "NS_first",
-	password: "nspass"
-	superuser: false
+	password: "nspass",
+	permissions: 7
 })
 
 User.create({
 	name: "NS_second",
-	password: "nspass2"
-	superuser: false
+	password: "nspass2",
+	permissions: 7
 })
 
 #HOUSES
 
 House.create({
-	name: "House1"
+	name: "House1",
+	permission_number: 1
 })
 
 House.create({
-	name: "House2"
+	name: "House2",
+	permission_number: 2
 })
 
 House.create({
-	name: "House3"
+	name: "House3",
+	permission_number: 3
 })
 
 House.create({
-	name: "House4"
+	name: "House4",
+	permission_number: 4
 })
 
 House.create({
-	name: "House5"
+	name: "House5",
+	permission_number: 5
 })
 
 House.create({
-	name: "CB"
+	name: "CB",
+	permission_number: 6
 })
 
 House.create({
-	name: "NS"
+	name: "NS",
+	permission_number: 7
 })
 
 #ROOMS

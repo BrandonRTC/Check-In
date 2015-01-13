@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
   	@current_user ||= User.find_by_session_token(session[:session_token])
   end
 
+  def current_house
+    if current_user.permissions == 0
+      @current_house == nil
+    else
+      @current_house ||= House.find_by_permission_number(current_user.permissions)
+    end
+  end
+
   def require_sign_in!
     redirect_to new_session_url if current_user.nil?
   end
