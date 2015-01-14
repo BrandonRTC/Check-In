@@ -6,17 +6,17 @@ class SessionsController < ApplicationController
 
 	def create
 		#maybe make user an instance variable for view?
-		user = User.find_by_credentials(
+		@user = User.find_by_credentials(
 			params[:user][:username],
 			params[:user][:password]
 		)
 
-		if user.nil?
+		if @user.nil?
 			flash.now[:errors] = "Invalid username or password"
 			render :new
 		else
-			login!(user)
-			redirect_to user_url(user)
+			login!(@user)
+			redirect_to user_url(@user)
 		end
 	end
 

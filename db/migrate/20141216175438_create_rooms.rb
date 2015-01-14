@@ -1,7 +1,7 @@
 class CreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
-    	t.string :name, null: false
+    	t.string :room_name, null: false
     	t.integer :house_id, null: false
     	t.integer :num_beds, null: false
 

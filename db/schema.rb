@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 20141217214100) do
   add_index "check_ins", ["tour_id"], name: "index_check_ins_on_tour_id", using: :btree
 
   create_table "houses", force: true do |t|
-    t.string   "name",              null: false
+    t.string   "house_name",        null: false
     t.integer  "permission_number", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "rooms", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "room_name",  null: false
     t.integer  "house_id",   null: false
     t.integer  "num_beds",   null: false
     t.datetime "created_at"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20141217214100) do
   add_index "tours", ["house_id"], name: "index_tours_on_house_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name",            null: false
+    t.string   "username",        null: false
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
     t.integer  "permissions",     null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20141217214100) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
