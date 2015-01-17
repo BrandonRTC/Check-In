@@ -45,6 +45,8 @@ group :development do
 	gem 'pry-rails'
 	gem 'quiet_assets'
 	gem 'letter_opener'
+	gem 'byebug'
+	gem 'meta_request'
 end
 
 gem'figaro'

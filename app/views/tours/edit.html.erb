@@ -1,0 +1,12 @@
+
+<!-- check NEW tour page for notes, should only need partial call eventually -->
+
+<h1>EDIT TOUR</h1>
+
+<form action="<%= tour_url %>" method="post" enctype="multipart/form-data">
+	<%= update_method_input %>
+	<%= auth_token %>
+
+	<input type="file" name="tour[end_img]" id="take-picture" accept='image/*'>
+	<input type="submit" value="Upload">
+</form>

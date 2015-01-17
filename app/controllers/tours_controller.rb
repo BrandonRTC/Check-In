@@ -14,20 +14,20 @@ class ToursController < ApplicationController
 		@tour = Tour.new(new_tour_params)
 
 		if @tour.save
-			# redirect_to new_tour_check_in_url(@tour)
-			redirect_to edit_tour_url(@tour)
+			redirect_to new_tour_check_in_url(@tour)
+			# redirect_to edit_tour_url(@tour.id)
 		else
-			flash.now[:errors] = @tour.errors.full_messages
+			flash.now[:errors] = @tour.errors.full_messagesd
 			render :new
 		end
 	end
 
 	def edit
-		@tour = Tour.find_by(params[:id])
+		@tour = Tour.find(params[:id])
 	end
 
 	def update
-		@tour = Tour.find_by(params[:id])
+		@tour = Tour.find(params[:id])
 
 		if @tour.update(edit_tour_params)
 			redirect_to user_url(current_user.id)

@@ -11,28 +11,28 @@ need that 'array' to create multiple check-in objects at controller level
 
 <form action="<% check_ins_url %>" method="post">
 	<label for="check_in_status_awake">Awake</label>
-	<input type="radio" name="check_in[:status]" id="check_in_status_awake" value="awake">
+	<input type="radio" name="check_in[status]" id="check_in_status_awake" value="awake">
 	
 	<label for="check_in_status_sleep">Asleep</label>
-	<input type="radio" name="check_in[:status]" id="check_in_status_sleep" value="sleep">
+	<input type="radio" name="check_in[status]" id="check_in_status_sleep" value="sleep">
 	
 	<label for="check_in_status_bathroom">Bathroom</label>
-	<input type="radio" name="check_in[:status]" id="check_in_status_bathroom" value="bathroom">
+	<input type="radio" name="check_in[status]" id="check_in_status_bathroom" value="bathroom">
 	
 	<label for="check_in_status_pass">Pass</label>
-	<input type="radio" name="check_in[:status]" id="check_in_status_pass" value="pass">
+	<input type="radio" name="check_in[status]" id="check_in_status_pass" value="pass">
 	
 	<label for="check_in_status_awol">AWOL</label>
-	<input type="radio" name="check_in[:status]" id="check_in_status_awol" value="awol">
+	<input type="radio" name="check_in[status]" id="check_in_status_awol" value="awol">
 
-	<input type="text" name="check_in[:initials]">
-	<input type="textarea" name="check_in[:comment]">
+	<input type="text" name="check_in[initials]">
+	<input type="textarea" name="check_in[comment]">
 
 	<!-- this will fill out based on QR scan; need to write javascript to multiply the forms by the rooms num_beds value  -->
-	<input type="hidden" name="check_in[:room_id]" value="">
+	<input type="hidden" name="check_in[room_id]" value="">
 
 	<!-- probably should push this to check_in controller; need to write methods to assess current tour/room -->
-	<input type="hidden" name="check_in[:tour_id]" value="">
+	<input type="hidden" name="check_in[tour_id]" value="">
 
 	<input type="submit" value="Submit Room">
 </form>

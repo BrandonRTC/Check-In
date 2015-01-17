@@ -5,7 +5,7 @@ class CheckInsController < ApplicationController
 	end
 
 	def create
-		#use TRANSACTION to create the array of check_ins (probably going to user browser validations too)
+		#use a TRANSACTION to create the array of check_ins (probably going to user browser validations too)
 
 		#nest new check_ins under tours to keep tour_id in url params
 		tour = Tour.find_by(params[:tour_id])
