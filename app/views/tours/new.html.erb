@@ -1,11 +1,33 @@
+
+<!-- Add logic to differentiate beginning (new) tour with ending (edited) tour
+	matters for title, form action & method, and file input name-->
+
 <h1>NEW TOUR</h1>
 
-<form action="<%= tours_url %>" method="post">
+<!-- Move this out to a PARTIAL -->
+
+<!-- use hidden param for regular users and explicit param for admins -->
+
+<form action="<%= tours_url %>" method="post" enctype="multipart/form-data">
 	<%= auth_token %>
-<!-- might need to change name attr, depending on what the attribute name is in rails (after paperclip integration) -->
-<input type="file" name="tour[img]" id="take-picture" accept='image/*' >
+
+	<% if current_user.superuser? %>
+		<select name="tour[:house_id]" id="admin_house_select">
+			<option value="0">House 1</option>
+			<option value="1">House 2</option>
+			<option value="2">House 3</option>
+			<option value="3">House 4</option>
+			<option value="4">House 5</option>
+			<option value="5">CB</option>
+			<option value="6">NS</option>
+		</select>
+	<% else %>
+		<input type="hidden" name="tour[:house_id]" value="<%= current_user.houses.first%>"
+	<% end %>
+
+
+<input type="file" name="tour[:start_img]" id="take-picture" accept='image/*'>
 
 <input type="submit" value="Upload">
-
 </form>
 

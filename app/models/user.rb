@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-	has_one :house
+	has_many :permissions
+	has_many :houses, through: :permissions, source: :house
 
 	validates :username, presence: true
 	validates :password_digest, presence: {message: "Password can't be blank"}
@@ -37,7 +38,7 @@ class User < ActiveRecord::Base
 	end
 
 	def superuser?
-		!!superuser
+		!!self.superuser
 	end
 
 	private

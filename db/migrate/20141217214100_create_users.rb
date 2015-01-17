@@ -4,9 +4,8 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :username, null: false
     	t.string :password_digest, null: false
     	t.string :session_token, null: false
-    	# t.boolean :superuser, default: false
-      t.integer :permissions, null: false
-
+    	t.boolean :superuser, default: false
+      
       t.timestamps
     end
     add_index :users, :username, unique: true

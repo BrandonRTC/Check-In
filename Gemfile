@@ -47,6 +47,8 @@ group :development do
 	gem 'letter_opener'
 end
 
+gem'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
 gem 'json'
-
 gem 'bcrypt'

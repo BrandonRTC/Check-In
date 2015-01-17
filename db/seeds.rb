@@ -6,132 +6,136 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+
+#look back at factory_girl, testing docs, etc
+
 #USERS
 
 User.create({
 	username: "Chas",
 	password: "password",
-	permissions: 0})
+	superuser: true
+})
 
 User.create({
 	username: "House1_first",
 	password: "house1pass",
-	permissions: 1
 })
 
 User.create({
 	username: "House1_second",
 	password: "house1pass2",
-	permissions: 1
 })
 
 User.create({
 	username: "House2_first",
 	password: "house2pass",
-	permissions: 2
 })
 
 User.create({
 	username: "House2_second",
 	password: "house2pass2",
-	permissions: 2
 })
 
 User.create({
 	username: "House3_first",
 	password: "house3pass",
-	permissions: 3
 })
 
 User.create({
 	username: "House3_second",
 	password: "house3pass2",
-	permissions: 3
 })
 
 User.create({
 	username: "House4_first",
 	password: "house4pass",
-	permissions: 4
 })
 
 User.create({
 	username: "House4_second",
 	password: "house4pass2",
-	permissions: 4
 })
 
 User.create({
 	username: "House5_first",
 	password: "house5pass",
-	permissions: 5
 })
 
 User.create({
 	username: "House5_second",
 	password: "house5pass2",
-	permissions: 5
 })
 
 User.create({
 	username: "CB_first",
 	password: "cbpass",
-	permissions: 6
 })
 
 User.create({
 	username: "CB_second",
 	password: "cbpass2",
-	permissions: 6
 })
 
 User.create({
 	username: "NS_first",
 	password: "nspass",
-	permissions: 7
 })
 
 User.create({
 	username: "NS_second",
 	password: "nspass2",
-	permissions: 7
 })
+
+#PERMISSIONS
+
+i = 0
+7.times do Permission.create({
+	user_id: 0,
+	house_id: i
+	})
+	i+=1
+end
+
+q = 2
+z = 0
+14.times do Permission.create({
+	user_id: q,
+	house_id: z
+	})
+	z+=1 if q % 2 == 1
+	q+=1
+end
 
 #HOUSES
 
 House.create({
 	house_name: "House1",
-	permission_number: 1
 })
 
 House.create({
 	house_name: "House2",
-	permission_number: 2
 })
 
 House.create({
 	house_name: "House3",
-	permission_number: 3
 })
 
 House.create({
 	house_name: "House4",
-	permission_number: 4
 })
 
 House.create({
 	house_name: "House5",
-	permission_number: 5
 })
 
 House.create({
 	house_name: "CB",
-	permission_number: 6
 })
 
 House.create({
 	house_name: "NS",
-	permission_number: 7
 })
 
 #ROOMS

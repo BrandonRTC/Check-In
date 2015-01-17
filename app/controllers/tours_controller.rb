@@ -11,12 +11,11 @@ class ToursController < ApplicationController
 	end
 
 	def create
-		#create tour based on house associated with current_user here
-		#might need a special work around for this for administrators, who don't have one associated house
-		@tour = current_user.house.tours.new(tour_params)
+		@tour = Tour.new(new_tour_params)
 
 		if @tour.save
-			redirect_to new_tour_check_in_url(@tour)
+			# redirect_to new_tour_check_in_url(@tour)
+			redirect_to edit_tour_url(@tour)
 		else
 			flash.now[:errors] = @tour.errors.full_messages
 			render :new
@@ -28,18 +27,23 @@ class ToursController < ApplicationController
 	end
 
 	def update
-		if @tour.update(tour_params)
+		@tour = Tour.find_by(params[:id])
+
+		if @tour.update(edit_tour_params)
 			redirect_to user_url(current_user.id)
 		else
-			#FILL THIS IN
+			flash.now[:errors] = @tour.errors.full_messages
+			render :edit
 		end
 	end
 
 	private
 
-	def tour_params
-		# params.require(:tours).permit(:house, :in_selfie, :out_selfie)
-		# since selfies are taken at different times, should there only be one selfie param or two for both data fields?
+	def new_tour_params
+		params.require(:tour).permit(:house_id, :start_img)
 	end
 
+	def edit_tour_params
+		params.require(:tour).permit(:end_img)
+	end
 end

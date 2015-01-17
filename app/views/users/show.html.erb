@@ -16,11 +16,13 @@ the tours might rotate in and out as time goes by, to avoid clutter (previous ho
 move the above 2 lines the the house index view
 -->
 
+<!-- need to make tour time send AJAX REQUESTS to update automatically (less important, cause will probably display right time after tour completion anyway), could also separate times depending on whose logged in? (prevents flexibility for workers, though)  -->
 
+
+<!-- just make a JS function for the tour time? -->
 <a href="<%= new_tour_url %>">
 	<button>Next Tour: <%= next_tour_time.strftime("%l:%M") %></button>
 </a>
-
 
 
 <!-- 

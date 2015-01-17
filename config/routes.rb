@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :tours, only: [:index]
   end
 
-  resources :tours, only: [:index, :new, :create, :destroy] do 
+  resources :tours, only: [:index, :new, :create, :edit, :update, :destroy] do 
     resources :check_ins, only: [:new]
     #look up how to put tour_id into post body
   end

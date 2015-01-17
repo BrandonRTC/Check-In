@@ -6,6 +6,7 @@ module ApplicationHelper
 		HTML
 	end
 
+	#rewrite in JS later!
 	def next_tour_time
 		time = Time.now
 		until time.min % 15 == 0

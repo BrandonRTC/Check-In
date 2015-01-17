@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217214100) do
+ActiveRecord::Schema.define(version: 20150116204147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,20 @@ ActiveRecord::Schema.define(version: 20141217214100) do
   add_index "check_ins", ["tour_id"], name: "index_check_ins_on_tour_id", using: :btree
 
   create_table "houses", force: true do |t|
-    t.string   "house_name",        null: false
-    t.integer  "permission_number", null: false
+    t.string   "house_name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "permissions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "house_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "permissions", ["house_id"], name: "index_permissions_on_house_id", using: :btree
+  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "rooms", force: true do |t|
     t.string   "room_name",  null: false
@@ -47,19 +56,27 @@ ActiveRecord::Schema.define(version: 20141217214100) do
   add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
 
   create_table "tours", force: true do |t|
-    t.boolean  "completed",  default: false
-    t.integer  "house_id",                   null: false
+    t.boolean  "completed",              default: false
+    t.integer  "house_id",                               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "start_img_file_name"
+    t.string   "start_img_content_type"
+    t.integer  "start_img_file_size"
+    t.datetime "start_img_updated_at"
+    t.string   "end_img_file_name"
+    t.string   "end_img_content_type"
+    t.integer  "end_img_file_size"
+    t.datetime "end_img_updated_at"
   end
 
   add_index "tours", ["house_id"], name: "index_tours_on_house_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.integer  "permissions",     null: false
+    t.string   "username",                        null: false
+    t.string   "password_digest",                 null: false
+    t.string   "session_token",                   null: false
+    t.boolean  "superuser",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
