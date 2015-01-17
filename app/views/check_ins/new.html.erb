@@ -9,7 +9,9 @@ need that 'array' to create multiple check-in objects at controller level
 
 <!-- QR SCANNER GOES HERE sends ajax request (to room controller? to check_in controller API?) get num_beds for the room-->
 
-<form action="<% check_ins_url %>" method="post">
+<form action="<%= tour_check_ins_url(@tour.id) %>" method="post">
+	<%= auth_token %>
+
 	<label for="check_in_status_awake">Awake</label>
 	<input type="radio" name="check_in[status]" id="check_in_status_awake" value="awake">
 	
@@ -25,14 +27,25 @@ need that 'array' to create multiple check-in objects at controller level
 	<label for="check_in_status_awol">AWOL</label>
 	<input type="radio" name="check_in[status]" id="check_in_status_awol" value="awol">
 
-	<input type="text" name="check_in[initials]">
-	<input type="textarea" name="check_in[comment]">
+	<label for="check_in_initials">Initials</label>
+	<input type="text" name="check_in[initials]" id="check_in_initials">
+	
+	<label for="check_in_comment">Comment</label>
+	<input type="textarea" name="check_in[comment]" id="check_in_comment">
 
 	<!-- this will fill out based on QR scan; need to write javascript to multiply the forms by the rooms num_beds value  -->
-	<input type="hidden" name="check_in[room_id]" value="">
+	<input type="hidden" name="check_in[room_id]" value="1"><!--HARDCODED ROOM_ID VALUE, BEWARE!-->
+
+	<!-- TEMPORARY room field to use before QR integration -->
+<!-- 	<select name="check_in[room_id]" id="identify_room">
+		<% @tour.house.rooms.each do |r| %>
+			<option value="<%= r.id %>"><%= r.room_name %></option>
+		<% end %>
+	</select> -->
+
 
 	<!-- probably should push this to check_in controller; need to write methods to assess current tour/room -->
-	<input type="hidden" name="check_in[tour_id]" value="">
+	<!-- <input type="hidden" name="check_in[tour_id]" value=""> -->
 
 	<input type="submit" value="Submit Room">
 </form>
