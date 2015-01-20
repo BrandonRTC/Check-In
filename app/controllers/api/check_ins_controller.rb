@@ -1,8 +1,15 @@
-class CheckInsController < ApplicationController
+class Api::CheckInsController < ApplicationController
+
+	#might want to require sign in here? (and at every controller)
+
+	#figure out jbuilder and use it on new and create methods
 
 	def new
 		@tour = Tour.find(params[:tour_id])
+		@rooms = @tour.house.rooms.reverse
 		@check_in = CheckIn.new
+
+		render json: {tour: @tour, rooms: @rooms, check_in: @check_in}
 	end
 
 	def create

@@ -90,16 +90,16 @@ User.create({
 
 #PERMISSIONS
 
-i = 0
+i = 1
 7.times do Permission.create({
-	user_id: 0,
+	user_id: 1,
 	house_id: i
 	})
 	i+=1
 end
 
 q = 2
-z = 0
+z = 1
 14.times do Permission.create({
 	user_id: q,
 	house_id: z
@@ -138,7 +138,7 @@ House.create({
 	house_name: "NS",
 })
 
-#ROOMS
+#ROOMS; figure out how to make this less brittle
 
 h1 = [1,2,4,2,4]
 h2 = [1,1,4,1,4]
@@ -148,17 +148,16 @@ h5 = [2,2,1,1,1,1,1]
 cb = [3,2,4,2]
 ns = [2,2,3,4]
 
-
 5.times do |i|
 Room.create({
 	room_name: "H1Room#{i+1}",
-	house_id: 0,
+	house_id: 1,
 	num_beds: h1[i]
 })
 
 Room.create({
 	room_name: "H2Room#{i+1}",
-	house_id: 1,
+	house_id: 2,
 	num_beds: h2[i]
 })
 end
@@ -166,7 +165,7 @@ end
 7.times do |i|
 	Room.create({
 		room_name: "H3Room#{i+1}",
-		house_id: 2,
+		house_id: 3,
 		num_beds: h3[i]
 	})
 
@@ -180,7 +179,7 @@ end
 8.times do |i|
 	Room.create({
 		room_name: "H4Room#{i+1}",
-		house_id: 3,
+		house_id: 5,
 		num_beds: h4[i]
 	})
 end
@@ -188,13 +187,13 @@ end
 4.times do |i|
 	Room.create({
 		room_name: "CBRoom#{i+1}",
-		house_id: 5,
+		house_id: 6,
 		num_beds: cb[i]
 	})
 
 	Room.create({
 		room_name: "NSRoom#{i+1}",
-		house_id: 6,
+		house_id: 7,
 		num_beds: ns[i]
 	})
 end

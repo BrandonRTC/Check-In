@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  #SORT ALL THIS OUT
   resources :users, only: [:new, :create, :show] do 
     resources :check_ins, only: [:new, :index]
     resources :tours, only: [:new, :index]
@@ -20,6 +21,14 @@ Rails.application.routes.draw do
 
   resources :check_ins, only: [:index, :create, :destroy]
 
+  #API ROUTES
+
+  namespace :api, defaults: {format: :json} do
+    resources :tours, only: [:index] do  
+      resources :check_ins, only: [:create] #figure out and set up only the routes necessary
+    end
+    resources :tours #ditto
+  end
   #-------------------------------------------
   #-------------------------------------------
   #-------------------------------------------

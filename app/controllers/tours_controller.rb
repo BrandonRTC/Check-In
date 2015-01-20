@@ -1,13 +1,14 @@
 class ToursController < ApplicationController
 
 	def index
-		@tours = Tour.where#date == current day
+		#@tours = Tour.where(date == current day)
 
-		#render json here for dynamic page
+		#render json here for dynamic page or only in an api?
 	end
 
 	def new 
 		@tour = Tour.new
+		@houses = House.all
 	end
 
 	def create
@@ -15,7 +16,6 @@ class ToursController < ApplicationController
 
 		if @tour.save
 			redirect_to new_tour_check_in_url(@tour)
-			# redirect_to edit_tour_url(@tour.id)
 		else
 			flash.now[:errors] = @tour.errors.full_messagesd
 			render :new
@@ -28,7 +28,8 @@ class ToursController < ApplicationController
 
 	def update
 		@tour = Tour.find(params[:id])
-
+		@tour.completed = true
+		
 		if @tour.update(edit_tour_params)
 			redirect_to user_url(current_user.id)
 		else

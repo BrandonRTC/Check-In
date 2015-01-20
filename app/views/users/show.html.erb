@@ -1,5 +1,8 @@
 <h1><%= @user.username %> Home Page</h1>
 
+<!-- ADD THE SUPERUSER NAVBAR HERE -->
+<!-- NAVBAR: CheckIn Index, Tour Index, User Show (start tour) -->
+
 <!--
 basic user SHOW page shows a group of tours to be performed for a given night
 each tour element consists of a displayed time with a button, in fact, the time might just go on the button
@@ -23,12 +26,3 @@ move the above 2 lines the the house index view
 <a href="<%= new_tour_url %>">
 	<button>Next Tour: <%= next_tour_time.strftime("%l:%M") %></button>
 </a>
-
-
-<!-- 
-
-make the list divs with only one clickable?
-
-**just make one button and display the next tour time, no need to display the rest of them**
-
--->
