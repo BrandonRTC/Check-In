@@ -1,0 +1,16 @@
+<h1>Completed CheckIns</h1>
+
+<!-- TODOS: format the timestamp, probably drop the house name since it's in the room,  -->
+
+<ul>
+	<% @check_ins.each do |c| %>
+		<li>
+			<section>Status: <%= c.status %></section>
+			<section>Initials: <%= c.initials %></section>
+			<section>Comment: <%= c.comment %></section>
+			<section>Room: <%= c.room.room_name %></section>
+			<section>House: <%= c.tour.house.house_name %></section>
+			<section>Submitted: <%= c.created_at %></section>
+		</li>
+	<% end %>
+</ul>

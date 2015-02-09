@@ -171,7 +171,7 @@ end
 
 	Room.create({
 		room_name: "H5Room#{i+1}",
-		house_id: 4,
+		house_id: 5,
 		num_beds: h5[i]
 	})
 end
@@ -179,7 +179,7 @@ end
 8.times do |i|
 	Room.create({
 		room_name: "H4Room#{i+1}",
-		house_id: 5,
+		house_id: 4,
 		num_beds: h4[i]
 	})
 end
