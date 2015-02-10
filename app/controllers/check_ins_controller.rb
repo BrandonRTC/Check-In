@@ -6,7 +6,7 @@ class CheckInsController < ApplicationController
 
 		# might need to use jbuilder for fiddling with json params sent over
 		# render json: {tour: @tour, rooms: @rooms}
-		render :new_page_root
+		render :backbone_new
 	end
 
 	def create

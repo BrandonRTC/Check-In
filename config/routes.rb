@@ -4,22 +4,23 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  #SORT ALL THIS OUT
+
   resources :users, only: [:new, :create, :show] do 
     resources :check_ins, only: [:new, :index]
     resources :tours, only: [:new, :index]
-    #should that ^ actually be create?
+    # should that ^ actually be create?
   end
 
   resources :houses, only: [:index] do 
     resources :tours, only: [:index]
   end
 
-  resources :tours, only: [:index, :new, :create, :edit, :update, :destroy] do 
+  resources :tours do 
     resources :check_ins, only: [:new, :create]
+    # possibly write current_tour method to replace nested create
   end
 
-  resources :check_ins, only: [:index, :create, :destroy]
+  resources :check_ins, only: [:index, :destroy]
 
   #API ROUTES
 
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     end
     resources :tours #ditto
   end
+  
   #-------------------------------------------
   #-------------------------------------------
   #-------------------------------------------

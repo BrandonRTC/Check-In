@@ -1,6 +1,6 @@
 BrandonApp.Models.CheckIn = Backbone.Model.extend({
 
-	// urlRoot: ""
+	// urlRoot: "api/check_ins"
 
 	// parse: function(){}
 

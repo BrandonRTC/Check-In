@@ -1,5 +1,5 @@
 BrandonApp.Views.CheckInRoom = Backbone.View.extend({
-	template: ["check_ins/room"],
+	template: JST["check_ins/room"],
 
 	// event needs to be updated when QR scanner implemented
 	events: {
@@ -16,6 +16,7 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 			rooms: this.collection
 		});
 		this.$el.html(content);
+		return this;
 	},
 
 	addCheckInForms: function(){

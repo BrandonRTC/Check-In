@@ -1,2 +1,18 @@
-<div>
+<div id="check-in-main-content">
 </div>
+
+<script type="application/json" id="rooms-json">
+	<%= @rooms.to_json.html_safe %>
+</script>
+
+<script type="text/javascript" id="tour-json">
+<%= @tour.to_json.html_safe %>
+</script>	
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var roomsJson = JSON.parse($("#rooms-json").html());
+		var tourJson = JSON.parse($("#tour-json").html());
+	  BrandonApp.initialize(roomsJson, tourJson, $("#check-in-main-content"));
+});
+</script>
