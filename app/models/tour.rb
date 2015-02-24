@@ -10,6 +10,8 @@ class Tour < ActiveRecord::Base
 	validates_attachment_content_type :start_img, content_type: /\Aimage\/.*\Z/
 	validates_attachment_content_type :end_img, content_type: /\Aimage\/.*\Z/
 
+
+	# need to find robust way of enforcing that a room is not checked twice!
 	def end_of_tour?
 		self.check_ins.count == self.expected_check_ins
 	end
@@ -21,5 +23,5 @@ class Tour < ActiveRecord::Base
 		end
 		checks
 	end
-
+	
 end

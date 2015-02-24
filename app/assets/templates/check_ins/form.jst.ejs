@@ -1,7 +1,8 @@
-	<li>
+		<!-- select tag to be replaced by QR scanner -->
+
 		<select name="room[check_in][][status]">
-			<option value="awake">Asleep</option>
-			<option value="sleep">Awake</option>
+			<option value="sleep">Asleep</option>
+			<option value="awake">Awake</option>
 			<option value="bathroom">Bathroom</option>
 			<option value="pass">Pass</option>
 			<option value="awol">AWOL</option>
@@ -14,4 +15,3 @@
 		<input type="textarea" name="room[check_in][][comment]" id="check_in_comment">
 
 		<input type="hidden" name="room[check_in][][room_id]" value="<%= room_id %>">
-	<li>

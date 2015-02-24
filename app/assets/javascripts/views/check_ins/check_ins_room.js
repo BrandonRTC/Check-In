@@ -3,12 +3,13 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 
 	// event needs to be updated when QR scanner implemented
 	events: {
-		'change #check_in_room_select' : 'addCheckInForms',
-		'click button' : 'submit',
+		'change #room_select' : 'swapCheckInForms',
+		'click #check_room' : 'submit',
 	},
 
-	initialize: function(){
+	initialize: function(options){
 		this.subViews = [];
+		this.tour = options.tour;
 	},
 
 	render: function(){
@@ -19,19 +20,25 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 		return this;
 	},
 
-	addCheckInForms: function(){
+	// maybe make this a swap check_ins form?
+	swapCheckInForms: function(){
 
-		var room_name = $('#room_select').val();
-		var room = this.collection.findWhere({name: room_name});
-		var num_rooms = room.get('num_rooms');
-		var id = room.get('id');
+		var room_id = parseInt($('#room_select').val());
 
-		for (var i = 0; i < num_rooms; i++) {
+		if (this.subViews.length > 0 || room_id === -1) {
+			this.removeCheckInForms();
+		}
+
+		var room = this.collection.findWhere({id: room_id});
+		var num_beds = room.get('num_beds');
+
+		// look up alternative to 'for' loop (low priority)
+		for (var i = 0; i < num_beds; i++) {
 			var view = new BrandonApp.Views.CheckInForm({
-				room_id: id
+				room_id: room_id
 			});
 			this.subViews.push(view);
-			$("#check_in_list").append(view.render.$el);
+			$("#check_in_list").append(view.render().$el);
 		}
 	},
 
@@ -42,13 +49,40 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 		});
 	},
 
-	// use to serialize json, make server calls, etc.
-	// needs success callback that calls removeCheckInForms
-	submit: function(){
-
+	get_url: function(){
+		return "/api/tours/" + this.tour.get("id") + "/check_ins"
 	},
 
-	// leave is for switching out the entire view (e.g. for when you change to the index view or w/e)
+	// use to serialize json, make server calls, etc.
+	// needs success callback that calls removeCheckInForms
+	submit: function(event){
+		event.preventDefault();
+
+		var attrs = $('form').serializeJSON();
+		var checks = new BrandonApp.Models.CheckInWrapper({tour: this.tour});
+		checks.set(attrs);
+
+		checks.save({}, {
+			success: function(model, resp){
+				console.log(resp);
+				if (resp.redirect){
+					console.log(resp.redirect);
+					console.log("should redirect");
+					window.location.replace(resp.redirect);
+				} else {
+					console.log("success!");
+					Backbone.history.navigate("", {trigger: true});
+				}
+			},
+			error: function(){
+				alert("fail!")
+				// display whatever the response is
+			}
+		});
+	},
+
+	// leave is for switching out the entire view
+	// (e.g. for when you change to the index view when this is an actual one page app)
 	leave: function(){
 		this.removeCheckInForms();
 		this.remove;

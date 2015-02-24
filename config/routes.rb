@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:new, :create, :show] do 
-    resources :check_ins, only: [:new, :index]
-    resources :tours, only: [:new, :index]
+    resources :check_ins, only: [:new]
+    resources :tours, only: [:new]
     # should that ^ actually be create?
   end
 
@@ -26,9 +26,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :tours, only: [:index] do  
-      resources :check_ins, only: [:create] #figure out and set up only the routes necessary
+      resources :check_ins, only: [:new, :create]
     end
-    resources :tours #ditto
+    resources :tours
   end
   
   #-------------------------------------------

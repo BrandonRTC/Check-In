@@ -1,14 +1,17 @@
 	<select id="room_select">
-		<option value="">...</option>
+		<option value="-1">...</option>
 		<% rooms.each(function(room){ %>
 			<option value="<%= room.escape('id') %>"><%= room.escape('room_name') %></option>
 		<% }); %>
 	</select>
+
+	<div id="QRreader" height="300" width="300">
+	</div>
 
 	<form id="check_in_form" action="" method="post">
 		<input type="hidden" name="authenticity_token" value="#{form_authenticity_token}">
 
 		<ul id="check_in_list">
 		</ul>
-		<button>Submit Room</button>
+		<button class="submit" id="check_room">Submit Room</button>
 	</form>

@@ -11,9 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.serializejson.min
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= html5-qrcode.min.js
+//= jsqrcode-combined.min.js
 //= require brandon_app
 //= require_tree ../templates
 //= require_tree ./models

@@ -1,7 +1,6 @@
 BrandonApp.Routers.CheckIns = Backbone.Router.extend({
 
 	initialize: function(options){
-		console.log("this is the router initializer", this.$rootEl);
 		this.$rootEl = options.$rootEl;
 		this.rooms = options.rooms;
 		this.tour = options.tour;
@@ -10,14 +9,18 @@ BrandonApp.Routers.CheckIns = Backbone.Router.extend({
 	// issue is that 'new' needs to be default view for now, but that might screw things up later
 	routes: {
 		// 'check_ins/new': 'new'
-		'': 'new'
+		"": 'new'
 	},
 
+	// need to decide whether to have the rooms or the checkins as the collection (probably checkins)
+	
 	new: function(){
 		var newView = new BrandonApp.Views.CheckInRoom({
-			collection: this.rooms
+			collection: this.rooms,
+			tour: this.tour
+			// collection: new BrandonApp.Collections.CheckIns(),
+			// model: new BrandonApp.Models.CheckIn()
 		});
-		console.log("this is the new method");
 		return this._swapView(newView)
 	},
 

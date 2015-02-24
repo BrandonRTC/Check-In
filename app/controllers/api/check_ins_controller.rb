@@ -3,28 +3,30 @@ class Api::CheckInsController < ApplicationController
 	#might want to require sign in here? (and at every controller)
 	#figure out jbuilder and use it on new and create methods
 
-	def new
-		@tour = Tour.find(params[:tour_id])
-		@rooms = @tour.house.rooms.reverse
+	# def new
+	# 	@tour = Tour.find(params[:tour_id])
+	# 	@rooms = @tour.house.rooms.reverse
 
-		# might need to use jbuilder
-		render json: {tour: @tour, rooms: @rooms}
-	end
+	# 	# might need to use jbuilder
+	# 	render json: {tour: @tour, rooms: @rooms}
+	# end
 
 	def create
 		@tour = Tour.find(params[:tour_id])
 		# @room = Room.find(check_in_params[:room_id])
 		# @check_in = @tour.check_ins.new(check_in_params)
 		@check_ins = @tour.check_ins.create(check_in_params[:check_in]).reject {|c| c.errors.empty?}
-		
+
 		if @check_ins.empty?
 			if @tour.end_of_tour?
-				redirect_to edit_tour_url(@tour.id)
+				render json: {redirect: edit_tour_url(@tour.id)}
 			else
 				# need to figure out what should actually be sent back/if below is even valid
 				render json: :success
 			end
 		else
+			#CHECK HOW TO DO THIS PROPERLY
+			render json: :errors
 			# render error messages for what? (since @check_ins is an array), just status unprocessable_entity?
 		end
 	end
