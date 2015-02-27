@@ -1,17 +1,29 @@
 		<!-- select tag to be replaced by QR scanner -->
 
-		<select name="room[check_in][][status]">
-			<option value="sleep">Asleep</option>
-			<option value="awake">Awake</option>
-			<option value="bathroom">Bathroom</option>
-			<option value="pass">Pass</option>
-			<option value="awol">AWOL</option>
-		</select>
+		<div class="row">
+			<div class="small-12 columns">
+				<select name="room[check_in][][status]" class="">
+					<option value="sleep">Asleep</option>
+					<option value="awake">Awake</option>
+					<option value="bathroom">Bathroom</option>
+					<option value="pass">Pass</option>
+					<option value="awol">AWOL</option>
+				</select>
+			</div>
+		</div>
 
-		<label for="check_in_initials">Initials</label>
-		<input type="text" name="room[check_in][][initials]" id="check_in_initials">
-		
-		<label for="check_in_comment">Comment</label>
-		<input type="textarea" name="room[check_in][][comment]" id="check_in_comment">
+		<div class="row">
+			<div class="small-12 columns">
+				<label for="check_in_initials">Initials</label>
+				<input type="text" name="room[check_in][][initials]" id="check_in_initials">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-12 columns">
+				<label for="check_in_comment">Comment</label>
+				<textarea name="room[check_in][][comment]" id="check_in_comment"></textarea>
+			</div>
+		</div>
 
 		<input type="hidden" name="room[check_in][][room_id]" value="<%= room_id %>">

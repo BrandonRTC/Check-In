@@ -17,10 +17,29 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 			rooms: this.collection
 		});
 		this.$el.html(content);
+		// this.initializeQR();
 		return this;
 	},
 
-	// maybe make this a swap check_ins form?
+	// works with html5_qrcode.min.js from dwa012
+	// need to add the html5_qrcode.min.js library back in to use this
+
+	// initializeQR: function(){
+	// 	this.$("#QRreader").html5_qrcode(
+	// 		function(data){
+	// 			// call swapCheckInForms here
+	// 			alert("successfully read a code!");
+	// 			console.log(data);
+	// 		},
+	// 		function(error){
+	// 			alert("generalError");
+	// 		},
+	// 		function(videoError){
+	// 			console.log(videoError);
+	// 		}
+	// 	);
+	// },
+
 	swapCheckInForms: function(){
 
 		var room_id = parseInt($('#room_select').val());
