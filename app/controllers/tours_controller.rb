@@ -1,9 +1,12 @@
 class ToursController < ApplicationController
 
 	def index
-		#@tours = Tour.where(date == current day)
+		# query for production; ask John about the actual tour times
+		# time = Time.now.change({hour: 19})
 
-		#render json here for dynamic page or only in an api?
+		# queries for testing
+		time = Time.new(2015, 2, 20, 12)
+		@houses = House.includes(:tours).where(tours: {created_at: time..(time + 12.hours)})
 	end
 
 	def new 

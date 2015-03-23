@@ -1,8 +1,11 @@
 <!-- 	<div id="QRreader" height="300px" width="300px" background-color="red">
 	</div> -->
 
+  <div id="outdiv">
+  </div>
+
 	<div class="row">
-		<div class="small-6 centered">
+		<div class="small-12 medium-12">
 			<select id="room_select">
 				<option value="-1">...</option>
 				<% rooms.each(function(room){ %>
@@ -12,15 +15,13 @@
 		</div>
 	</div>
 
-
-
 	<form id="check_in_form" action="" method="post">
 		<input type="hidden" name="authenticity_token" value="#{form_authenticity_token}">
 
 		<ul id="check_in_list" class="no-bullet"></ul>
 
 		<div class="row">
-			<div class="small-12 columns">
+			<div class="small-12 medium-12">
 				<button class="submit" id="check_room">Submit Room</button>
 			</div>
 		</div>

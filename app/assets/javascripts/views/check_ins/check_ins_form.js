@@ -3,6 +3,7 @@ BrandonApp.Views.CheckInForm = Backbone.View.extend({
 	template: JST["check_ins/form"],
 
 	tagName: "li",
+	className: "row panel",
 
 	initialize: function(options){
 		this.room_id = options.room_id;

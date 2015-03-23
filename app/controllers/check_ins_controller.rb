@@ -13,7 +13,7 @@ class CheckInsController < ApplicationController
 		@tour = Tour.find(params[:tour_id])
 		# room param might change with QR code
 		# @room = Room.find(check_in_params[:check_in].first[:room_id])
-		@check_ins = @tour.check_ins.create(check_in_params[:check_in]).reject {|c| c.errors.empty?}
+		@check_ins = @tour.check_ins.create(new_check_in_params[:check_in]).reject {|c| c.errors.empty?}
 
 		if @check_ins.empty?
 			if @tour.end_of_tour?
@@ -29,12 +29,12 @@ class CheckInsController < ApplicationController
 	end
 
 	def index
-		@check_ins = CheckIn.all
+		@check_ins = CheckIn.order(:tour_id).order(:created_at).page(params[:page])
 	end
 
 	private
 
-	def check_in_params
+	def new_check_in_params
 		# params.require(:check_in).permit(:status, :initials, :comment, :room_id)
 		params.require(:room).permit(:check_in => [:status, :initials, :comment, :room_id])
 	end

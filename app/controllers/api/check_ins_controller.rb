@@ -15,7 +15,7 @@ class Api::CheckInsController < ApplicationController
 		@tour = Tour.find(params[:tour_id])
 		# @room = Room.find(check_in_params[:room_id])
 		# @check_in = @tour.check_ins.new(check_in_params)
-		@check_ins = @tour.check_ins.create(check_in_params[:check_in]).reject {|c| c.errors.empty?}
+		@check_ins = @tour.check_ins.create(new_check_in_params[:check_in]).reject {|c| c.errors.empty?}
 
 		if @check_ins.empty?
 			if @tour.end_of_tour?
@@ -37,7 +37,7 @@ class Api::CheckInsController < ApplicationController
 
 	private
 
-	def check_in_params
+	def new_check_in_params
 		params.require(:room).permit(:check_in => [:status, :initials, :comment, :room_id])
 	end
 

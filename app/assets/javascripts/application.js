@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.serializejson.min
 //= require jquery_ujs
+//= require llqrcode.min
+//= require qr_script
 //= require underscore
 //= require backbone
 //= require brandon_app

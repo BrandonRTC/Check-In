@@ -1,16 +1,63 @@
-<h1>Completed CheckIns</h1>
+<div class="row">
+	<div class="small-6 columns small-centered">
+		<h1>Completed CheckIns</h1>
+	</div>
+</div>
 
-<!-- TODOS: format the timestamp, probably drop the house name since it's in the room,  -->
 
-<ul>
-	<% @check_ins.each do |c| %>
-		<li>
-			<section>Status: <%= c.status %></section>
-			<section>Initials: <%= c.initials %></section>
-			<section>Comment: <%= c.comment %></section>
-			<section>Room: <%= c.room.room_name %></section>
-			<section>House: <%= c.tour.house.house_name %></section>
-			<section>Submitted: <%= c.created_at %></section>
-		</li>
-	<% end %>
-</ul>
+<div class="row">
+	<div class="small-12 columns">
+		<ul class="no-bullet">
+			<% @check_ins.each do |c| %>
+				<li class="panel">
+					<div class="row">
+						<div class="small-6 columns">
+							<section class="panel">
+								Status: <%= c.status %>
+							</section>
+						</div>
+						
+						<div class="small-6 columns">
+							<section class="panel">
+								Initials: 
+									<% unless c.initials.empty? %>
+										<%= c.initials %>
+									<% else %>
+										N/A
+									<% end %>
+							</section>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="small-12 columns">
+							<section class="panel">
+								Comment: 
+									<% unless c.comment.empty? %>
+										<%= c.comment %>
+									<% else %>
+										N/A
+									<% end %>
+							</section>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="small-6 columns"><section class="panel">Room: <%= c.room.room_name %></section></div>
+						<div class="small-6 columns"><section class="panel">House: <%= c.tour.house.house_name %></section></div>
+					</div>
+
+					<div class="row">
+						<div class="small-12 columns">
+							<section class="panel">Submitted: <%= format_date_time(c.created_at) %></section>
+						</div>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+<div id="paginateCheckIns">
+	<%= paginate @check_ins %>
+</div>

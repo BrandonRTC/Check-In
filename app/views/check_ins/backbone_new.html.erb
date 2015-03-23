@@ -11,8 +11,16 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		var deferred = $.Deferred();
 		var roomsJson = JSON.parse($("#rooms-json").html());
 		var tourJson = JSON.parse($("#tour-json").html());
-	  BrandonApp.initialize(roomsJson, tourJson, $("#check-in-main-content"));
+
+	  // BrandonApp.initialize(roomsJson, tourJson, $("#check-in-main-content"));
+	  // setTimeout(function(){
+	  // 	setwebcam();
+	  // }, 3000);
+	
+	  deferred.done(BrandonApp.initialize).done(setwebcam);
+	  deferred.resolve(roomsJson, tourJson, $("#check-in-main-content"))
 });
 </script>

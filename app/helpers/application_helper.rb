@@ -12,6 +12,14 @@ module ApplicationHelper
 		HTML
 	end
 
+	def format_time(time)
+		time.strftime("%l:%M %p")
+	end
+
+	def format_date_time(time)
+		time.strftime("%-m/%-d/%y %l:%M %p")
+	end
+
 	#rewrite in JS later!
 	def next_tour_time
 		time = Time.now

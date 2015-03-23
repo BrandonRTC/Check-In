@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="small-4 columns small-centered">
+		<h1>Current Tours</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 columns">
+		<% @houses.each do |h| %>
+			<section class="panel">
+				
+				<div class="row">
+					<div class="small-12 columns"><h3><%= h.house_name %></h3></div>
+				</div>
+
+				<ul class="no-bullet">
+					<% h.tours.each do |t| %>
+						<li>
+							<div class="row">
+								<div class="small-8 columns">Begun: <%= format_time(t.created_at) %></div>
+								<div class="small-4 columns">Complete: <%= t.completed %></div>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+
+			</section>
+		<% end %>
+	</div>
+</div>

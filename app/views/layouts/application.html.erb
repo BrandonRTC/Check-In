@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	  <title>BrandonApp</title>
+	  <title>Brandon Check-In</title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -16,17 +16,16 @@
 			<%= flash.now[:errors] %>
 		<% end %>
 
-		<!-- add optional navbar for admins (rotate between current tours and records of check-ins) -->
-		<!-- tours url and check_in url might need to point to API routes later -->
-
 		<% if !current_user.nil? %>
 			<ul class="no-bullet inline-list">
-				<li><a href="<%= user_url(current_user.id) %>">Logged in as: <%= current_user.username %></li>
+				<li><a href="<%= user_url(current_user.id) %>"><%= current_user.username %></li>
 				<% if current_user.superuser? %>
-					<li><a href="<%= tours_url %>">Tour List</a></li>
-					<li><a href="<%= check_ins_url %>">Check-In List</a></li>
+					<li><a href="<%= tours_url %>">Current Tours</a></li>
+					<li><a href="<%= check_ins_url %>">Check-In Review</a></li>
+					<li><a href="">Tour Review</a></li>
 				<% end %>
 				<li>
+					<!-- redo this as an anchor tag -->
 					<form action="<%= session_url %>" method="post">
 						<input type="hidden" name="_method" value="delete">
 						<%= auth_token %>
