@@ -1,5 +1,13 @@
-<h1><%= @user.username %></h1>
+<div class="row">
+	<div class="small-3 columns small-centered">
+		<h2><%= @user.username %></h2>
+	</div>
+</div>
 
-<a href="<%= new_tour_url %>">
-	<button>Next Tour: <%= next_tour_time.strftime("%l:%M") %></button>
-</a>
+<div class="row">
+	<div class="small-3 columns small-centered">
+		<a href="<%= new_tour_url %>" class="button large">
+			Next Tour: <%= next_tour_time.strftime("%l:%M") %>
+		</a>
+	</div>
+</div>

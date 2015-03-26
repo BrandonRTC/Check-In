@@ -17,22 +17,42 @@
 		<% end %>
 
 		<% if !current_user.nil? %>
-			<ul class="no-bullet inline-list">
-				<li><a href="<%= user_url(current_user.id) %>"><%= current_user.username %></li>
-				<% if current_user.superuser? %>
-					<li><a href="<%= tours_url %>">Current Tours</a></li>
-					<li><a href="<%= check_ins_url %>">Check-In Review</a></li>
-					<li><a href="">Tour Review</a></li>
-				<% end %>
-				<li>
-					<!-- redo this as an anchor tag -->
-					<form action="<%= session_url %>" method="post">
-						<input type="hidden" name="_method" value="delete">
-						<%= auth_token %>
-						<button class="button tiny">Logout</button>
-					</form>
-				</li>
-			</ul>
+			<nav class="top-bar" data-topbar role="navigation">
+
+				<ul class="title-area">
+					<li class="name">
+						<h1>
+							<a href="#">Brandon Check-In</a>
+						</h1>
+					</li>
+				</ul>
+
+				<section class="top-bar-section">
+					<ul class="right">
+						<li class="divider"></li>
+						<li><a href="<%= user_url(current_user.id) %>"><%= current_user.username %></a></li>
+						<li class="divider"></li>
+						<% if current_user.superuser? %>
+							<li><a href="<%= tours_url %>">Current Tours</a></li>
+							<li class="divider"></li>
+							<li><a href="<%= check_ins_url %>">Check-In Review</a></li>
+							<li class="divider"></li>
+							<li><a href="">Tour Review</a></li>
+							<li class="divider"></li>
+						<% end %>
+						<li class="has-form">
+							<form action="<%= session_url %>" method="post">
+								<input type="hidden" name="_method" value="delete">
+								<%= auth_token %>
+								<button class="button tiny">Logout</button>
+							</form>
+						</li>
+					</ul>
+				</section>
+
+
+			</nav>
+
 		<% end %>
 
     <%= yield %>
