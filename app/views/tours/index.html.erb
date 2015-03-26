@@ -1,24 +1,38 @@
 <div class="row">
 	<div class="small-4 columns small-centered">
-		<h1>Current Tours</h1>
+		<h2>Current Tours</h2>
 	</div>
 </div>
 
+<!-- use special panel color class switching (with jquery?) to denote tour (in)completion	 -->
+<!-- find better color than just yellow for incomplete tours! -->
+
 <div class="row">
-	<div class="small-12 columns">
+	<div class="small-10 columns small-centered">
 		<% @houses.each do |h| %>
 			<section class="panel">
 				
 				<div class="row">
-					<div class="small-12 columns"><h3><%= h.house_name %></h3></div>
+					<div class="small-9 columns small-centered"><h4><%= h.house_name %></h4></div>
 				</div>
 
 				<ul class="no-bullet">
 					<% h.tours.each do |t| %>
+
+						<% if t.completed? %>
+							<% color = "callout" %>
+						<% else %>
+							<% color = "tour-incomplete" %>
+						<% end %>
+
 						<li>
 							<div class="row">
-								<div class="small-8 columns">Begun: <%= format_time(t.created_at) %></div>
-								<div class="small-4 columns">Complete: <%= t.completed %></div>
+								<div class="small-9 columns panel small-centered <%= color %>">
+									<div class="row">
+										<div class="small-6 columns">Begun: <%= format_time(t.created_at) %></div>
+										<div class="small-3 columns">Complete: <%= t.completed %></div>
+									</div>
+								</div>
 							</div>
 						</li>
 					<% end %>

@@ -1,3 +1,5 @@
+/*custom panels at 2719*/
+/*need to make giant custom button*/
 meta.foundation-version {
   font-family: "/5.5.1/"; }
 
@@ -2715,6 +2717,12 @@ meta.foundation-mq-topbar {
         color: #0078a0; }
   .panel.radius {
     border-radius: 3px; }
+    /*brandon app custom css*/
+  .panel.custom {
+    background-color: #bbb; }
+  .panel.tour-incomplete {
+    background-color: yellow;
+  }
 
 .dropdown.button, button.dropdown {
   position: relative;
