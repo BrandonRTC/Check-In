@@ -20,7 +20,7 @@
 	  // 	setwebcam();
 	  // }, 3000);
 	
-	  deferred.done(BrandonApp.initialize).done(setwebcam);
+	  deferred.done(BrandonApp.initialize).done(setwebcam).done(load);
 	  deferred.resolve(roomsJson, tourJson, $("#check-in-main-content"))
 });
 </script>

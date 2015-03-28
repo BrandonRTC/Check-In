@@ -17,7 +17,6 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 			rooms: this.collection
 		});
 		this.$el.html(content);
-		// this.initializeQR();
 		return this;
 	},
 
@@ -40,15 +39,18 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	// 	);
 	// },
 
-	swapCheckInForms: function(){
+	swapCheckInForms: function(name){
 
-		var room_id = parseInt($('#room_select').val());
+		// var room_id = parseInt($('#room_select').val());
+
+		var room = this.collection.findWhere({room_name: name})
+		var room_id = room.get("room_id");
 
 		if (this.subViews.length > 0 || room_id === -1) {
 			this.removeCheckInForms();
 		}
 
-		var room = this.collection.findWhere({id: room_id});
+		// var room = this.collection.get(room_id);
 		var num_beds = room.get('num_beds');
 
 		// look up alternative to 'for' loop (low priority)

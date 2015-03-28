@@ -14,62 +14,10 @@ var camhtml='  	<object  id="embedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-
 		'<param name="allowScriptAccess" value="always" />'+
   		'<embed  allowScriptAccess="always"  id="embedflash" src="images/camcanvas.swf" quality="high" width="320" height="320" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />'+
     '</object>';
-    
-var imghtml='<div id="qrfile"><canvas id="out-canvas" width="320" height="320"></canvas>'+
-    '<div id="imghelp">drag and drop a QRCode here'+
-	'<br>or select a file'+
-	'<input type="file" onchange="handleFiles(this.files)"/>'+
-	'</div>'+
-'</div>';
 
 var vidhtml = '<video id="v" autoplay></video>';
 
-function dragenter(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
-
-function dragover(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
-function drop(e) {
-  e.stopPropagation();
-  e.preventDefault();
-
-  var dt = e.dataTransfer;
-  var files = dt.files;
-  if(files.length>0)
-  {
-	handleFiles(files);
-  }
-  else
-  if(dt.getData('URL'))
-  {
-	qrcode.decode(dt.getData('URL'));
-  }
-}
-
-function handleFiles(f)
-{
-	var o=[];
-	
-	for(var i =0;i<f.length;i++)
-	{
-        var reader = new FileReader();
-        reader.onload = (function(theFile) {
-        return function(e) {
-            gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-
-			qrcode.decode(e.target.result);
-        };
-        })(f[i]);
-        reader.readAsDataURL(f[i]);	
-    }
-}
-
-function initCanvas(ww,hh)
-{
+function initCanvas(ww,hh) {
     gCanvas = document.getElementById("qr-canvas");
     var w = ww;
     var h = hh;
@@ -81,36 +29,7 @@ function initCanvas(ww,hh)
     gCtx.clearRect(0, 0, w, h);
     imageData = gCtx.getImageData( 0,0,320,320);
 }
-
-function passLine(stringPixels) { 
-
-    var coll = stringPixels.split("-");
-
-    for(var i=0;i<320;i++) { 
-        var intVal = parseInt(coll[i]);
-        r = (intVal >> 16) & 0xff;
-        g = (intVal >> 8) & 0xff;
-        b = (intVal ) & 0xff;
-        imageData.data[c+0]=r;
-        imageData.data[c+1]=g;
-        imageData.data[c+2]=b;
-        imageData.data[c+3]=255;
-        c+=4;
-    } 
-
-    if(c>=320*320*4) { 
-        c=0;
-        gCtx.putImageData(imageData, 0,0);
-        try{
-            qrcode.decode();
-        }
-        catch(e){       
-            console.log(e);
-            setTimeout(captureToCanvas, 500);
-        };
-    } 
-} 
-
+    
 function captureToCanvas() {
     if(stype!=1)
         return;
@@ -120,21 +39,21 @@ function captureToCanvas() {
             gCtx.drawImage(v,0,0);
             try{
                 qrcode.decode();
+                setTimeout(captureToCanvas, 500);
             }
-            catch(e){       
+            catch(e){
                 console.log(e);
                 setTimeout(captureToCanvas, 500);
             };
         }
-        catch(e){       
-                console.log(e);
-                setTimeout(captureToCanvas, 500);
+        catch(e){
+            console.log(e);
+            setTimeout(captureToCanvas, 500);
         };
     }
     else
     {
         flash = document.getElementById("embedflash");
-        console.log("gUM was false, tries flash")
         try{
             flash.ccCapture();
         }
@@ -151,20 +70,16 @@ function htmlEntities(str) {
 }
 
 // probably don't need this / probably need to rewrite this
-function read(a)
-{
+function read(a) {
     console.log("qr code scanned!", a);
-    var html="<br>";
-    if(a.indexOf("http://") === 0 || a.indexOf("https:///") === 0)
-        html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
-    html+="<b>"+htmlEntities(a)+"</b><br><br>";
-    document.getElementById("result").innerHTML=html;
+    window.BrandonApp.router.currentView.swapCheckInForms(a);
 }	
 
-function isCanvasSupported(){
+function isCanvasSupported() {
   var elem = document.createElement('canvas');
   return !!(elem.getContext && elem.getContext('2d'));
 }
+
 function success(stream) {
     console.log("success!")
     if(webkit)
@@ -189,11 +104,12 @@ function error(error) {
 
 function load()
 {
+    console.log("loads");
 	if(isCanvasSupported() && window.File && window.FileReader)
 	{
 		initCanvas(800,600);
 		qrcode.callback = read;
-		document.getElementById("mainbody").style.display="inline";
+		// document.getElementById("mainbody").style.display="inline";
 	}
 	else
 	{
@@ -204,8 +120,7 @@ function load()
 	}
 }
 
-function setwebcam()
-{
+function setwebcam() {
 	// document.getElementById("result").innerHTML="- scanning -";
     if(stype==1)
     {
@@ -244,18 +159,4 @@ function setwebcam()
     stype=1;
     console.log("hits 'else' in setwebcam function")
     setTimeout(captureToCanvas, 500);
-}
-function setimg()
-{
-	document.getElementById("result").innerHTML="";
-    if(stype==2)
-        return;
-    document.getElementById("outdiv").innerHTML = imghtml;
-    document.getElementById("qrimg").src="images/upload1.jpg";
-    document.getElementById("webcamimg").src="images/webcam2.jpg";
-    var qrfile = document.getElementById("qrfile");
-    qrfile.addEventListener("dragenter", dragenter, false);  
-    qrfile.addEventListener("dragover", dragover, false);  
-    qrfile.addEventListener("drop", drop, false);
-    stype=2;
 }

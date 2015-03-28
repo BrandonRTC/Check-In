@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # change this or add a redirect to user homepage if logged in
   root to: "sessions#new"
 
   resource :session, only: [:new, :create, :destroy]
@@ -10,12 +11,10 @@ Rails.application.routes.draw do
     # should that ^ actually be create?
   end
 
-  # resources :houses, only: [:index] do 
-  #   resources :tours, only: [:index]
-  # end
+  resources :houses, only: [:index]
 
   resources :tours do 
-    resources :check_ins, only: [:new, :create]
+    resources :check_ins, only: [:new, :create]    
     # possibly write current_tour method to replace nested create
   end
 

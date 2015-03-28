@@ -37,11 +37,11 @@
 						<li><a href="<%= user_url(current_user.id) %>">New Tour</a></li>
 						<li class="divider"></li>
 						<% if current_user.superuser? %>
-							<li><a href="<%= tours_url %>">In Progress Tours</a></li>
+							<li><a href="<%= houses_url %>">In Progress Tours</a></li>
 							<li class="divider"></li>
 							<li><a href="<%= check_ins_url %>">Check-In Review</a></li>
 							<li class="divider"></li>
-							<li><a href="">Tour Review</a></li>
+							<li><a href="<%= tours_url %>">Tour Review</a></li>
 							<li class="divider"></li>
 						<% end %>
 						<li class="has-form">

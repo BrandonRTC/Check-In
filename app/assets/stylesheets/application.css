@@ -15,3 +15,7 @@
  *= require normalize
  *= require foundation
  */
+
+#qr-canvas {
+	display: none;
+}
