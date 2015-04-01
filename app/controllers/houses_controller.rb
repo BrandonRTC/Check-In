@@ -1,5 +1,7 @@
 class HousesController < ApplicationController
 
+	before_action :require_sign_in!
+
 	# for monitoring tours
 	def index
 		# query for production; ask John about the actual tour times

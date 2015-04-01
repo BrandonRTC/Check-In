@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
+	before_action :require_sign_in!, only: [:destroy]
+
 	def new
+		redirect_to user_url(current_user) if signed_in? 
 		@user = User.new
 	end
 

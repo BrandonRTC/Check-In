@@ -1,5 +1,7 @@
 class CheckInsController < ApplicationController
 
+	before_action :require_sign_in!
+
 	def new
 		@tour = Tour.find(params[:tour_id])
 		@rooms = @tour.house.rooms.reverse

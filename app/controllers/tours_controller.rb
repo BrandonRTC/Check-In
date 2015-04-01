@@ -1,5 +1,7 @@
 class ToursController < ApplicationController
 
+	before_action :require_sign_in!
+
 	def index
 		@tours = Tour.order(:id).page(params[:page]).per(10)
 	end

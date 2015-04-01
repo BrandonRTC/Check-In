@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 	before_action :require_current_user!, except: [:create, :new]
 	before_action :require_correct_user!, except: [:create, :new]
 
-
 #might not want new or create user functions, since no signing up
 #new users would be for creating new admin accounts, which probably shouldn't be necessary
 	def new 
