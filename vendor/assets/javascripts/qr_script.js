@@ -15,7 +15,9 @@ var camhtml='  	<object  id="embedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-
   		'<embed  allowScriptAccess="always"  id="embedflash" src="images/camcanvas.swf" quality="high" width="320" height="320" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />'+
     '</object>';
 
-var vidhtml = '<video id="v" autoplay></video>';
+// var vidhtml = '<video id="v" autoplay></video>';
+
+var vidhtml = "<div class='row'><video id='v' class='small-12 columns small-centered' autoplay></video></div>"
 
 function initCanvas(ww,hh) {
     gCanvas = document.getElementById("qr-canvas");
@@ -69,9 +71,10 @@ function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// probably don't need this / probably need to rewrite this
 function read(a) {
     console.log("qr code scanned!", a);
+
+    // probably not the best way to hook the two parts up (ask aA?)
     window.BrandonApp.router.currentView.swapCheckInForms(a);
 }	
 

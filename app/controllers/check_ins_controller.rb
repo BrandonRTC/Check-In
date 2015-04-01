@@ -35,55 +35,7 @@ class CheckInsController < ApplicationController
 	private
 
 	def new_check_in_params
-		# params.require(:check_in).permit(:status, :initials, :comment, :room_id)
 		params.require(:room).permit(:check_in => [:status, :initials, :comment, :room_id])
 	end
 
 end
-
-# params visualizations
-
-# params.require(:list).permit(:0, :1, :2, :check_in, :status, :initials, :comment, :room_id)
-
-# list => {
-
-# 	0 => check_in => {status => A, initials => CMM, comment => blah blah, room_id => 4},
-# 	1 => check_in => {...}
-# 	2 => check_in => {...}
-
-# }
-
-# ------------------------------
-
-# params.require(:check_in).permit(?)
-
-# check_in {
-
-# 	0 => {status,init,etc},
-# 	1 => {...},
-# 	2 => {...},
-# 	...
-
-# }
-
-# check_in.to_a 
-
-# -------------------------------
-
-# params.require(:room).permit({:check_ins => [:status, :initials, :comment, :room_id]})
-
-# room => {
-# 	check_ins => [
-# 		{:status, :initials, :comment, :room_id},
-# 		{:status, :initials, :comment, :room_id},
-# 		{:status, :initials, :comment, :room_id}
-# 	]
-# }
-
-# room => {
-# 	check_ins => [
-# 		{:status, :initials, :comment, :room_id},
-# 		{:status, :initials, :comment, :room_id},
-# 		{:status, :initials, :comment, :room_id}
-# 	]
-# }

@@ -1,9 +1,17 @@
-<h1>EDIT TOUR</h1>
+<div class="row">
+	<div class="small-8 columns small-centered">
+		<h2>End Tour</h2>
+	</div>
+</div>
 
-<form action="<%= tour_url %>" method="post" enctype="multipart/form-data">
-	<%= update_method_input %>
-	<%= auth_token %>
+<div class="row">
+	<div class="small-8 columns small-centered">
+		<form action="<%= tour_url %>" method="post" enctype="multipart/form-data">
+			<%= update_method_input %>
+			<%= auth_token %>
 
-	<input type="file" name="tour[end_img]" id="take-picture" accept='image/*;capture=camera'>
-	<input type="submit" value="Upload">
-</form>
+			<input type="file" name="tour[end_img]" id="take-picture" accept='image/*;capture=camera'>
+			<input type="submit" value="Upload" class="button">
+		</form>
+	</div>
+</div>

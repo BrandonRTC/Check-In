@@ -2717,11 +2717,12 @@ meta.foundation-mq-topbar {
         color: #0078a0; }
   .panel.radius {
     border-radius: 3px; }
-    /*brandon app custom css*/
+
+    /*BRANDON APP CUSTOM CSS*/
   .panel.custom {
     background-color: #bbb; }
   .panel.tour-incomplete {
-    background-color: yellow;
+    background-color: #fffc61;
   }
 
 .dropdown.button, button.dropdown {

@@ -19,73 +19,73 @@ User.create({
 })
 
 User.create({
-	username: "House1_first",
-	password: "house1pass",
+	username: "H1_first",
+	password: "h1kindle1",
 })
 
 User.create({
-	username: "House1_second",
-	password: "house1pass2",
+	username: "H1_second",
+	password: "h1kindle2",
 })
 
 User.create({
-	username: "House2_first",
-	password: "house2pass",
+	username: "H2_first",
+	password: "h2kindle1",
 })
 
 User.create({
-	username: "House2_second",
-	password: "house2pass2",
+	username: "H2_second",
+	password: "h2kindle2",
 })
 
 User.create({
-	username: "House3_first",
-	password: "house3pass",
+	username: "H3_first",
+	password: "h3kindle1",
 })
 
 User.create({
-	username: "House3_second",
-	password: "house3pass2",
+	username: "H3_second",
+	password: "h3kindle2",
 })
 
 User.create({
-	username: "House4_first",
-	password: "house4pass",
+	username: "H4_first",
+	password: "h4kindle1",
 })
 
 User.create({
-	username: "House4_second",
-	password: "house4pass2",
+	username: "H4_second",
+	password: "h4kindle2",
 })
 
 User.create({
-	username: "House5_first",
-	password: "house5pass",
+	username: "H5_first",
+	password: "h5kindle1",
 })
 
 User.create({
-	username: "House5_second",
-	password: "house5pass2",
+	username: "H5_second",
+	password: "h5kindle2",
 })
 
 User.create({
 	username: "CB_first",
-	password: "cbpass",
+	password: "cbkindle1",
 })
 
 User.create({
 	username: "CB_second",
-	password: "cbpass2",
+	password: "cbkindle2",
 })
 
 User.create({
 	username: "NS_first",
-	password: "nspass",
+	password: "nskindle1",
 })
 
 User.create({
 	username: "NS_second",
-	password: "nspass2",
+	password: "nskindle2",
 })
 
 #PERMISSIONS
@@ -131,11 +131,11 @@ House.create({
 })
 
 House.create({
-	house_name: "CB",
+	house_name: "Cedarbrook",
 })
 
 House.create({
-	house_name: "NS",
+	house_name: "Nobscot",
 })
 
 #ROOMS; figure out how to make this less brittle

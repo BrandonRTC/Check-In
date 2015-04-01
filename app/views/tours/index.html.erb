@@ -1,1 +1,43 @@
-<h2>Tour Review</h2>
+<div class="row">
+	<div class="small-12 columns small-centered">
+		<h2>Tour Review</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 columns small-centered">
+		<ul class="no-bullet">
+			<% @tours.each do |t| %>
+				<li class="panel">
+					<div class="row">
+						<section class="small-12 columns panel">
+							House: <%= t.house.house_name %>
+						</section>
+					</div>
+
+					<div class="row">
+						<section class="small-6 columns panel">
+							Begun: <%= format_date_time(t.created_at) %>
+						</section>
+						<section class="small-6 columns">
+							<%= image_tag t.start_img.url(:small) %>
+						</section>
+					</div>
+
+					<div class="row">
+						<section class="small-6 columns panel">
+							Finished: <%= format_date_time(t.updated_at) %>
+						</section>
+						<section class="small-6 columns">
+							<%= image_tag t.end_img.url(:small) %>
+						</section>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+<div id="paginateTours">
+	<%= paginate @tours %>
+</div>

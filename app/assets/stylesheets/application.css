@@ -19,3 +19,10 @@
 #qr-canvas {
 	display: none;
 }
+
+#v {
+	border: 1px solid gray;
+	padding: 0px;
+	/*border-width: 3px;*/
+	/*border-color: black;*/
+}
