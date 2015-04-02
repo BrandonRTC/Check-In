@@ -16,7 +16,7 @@
 					<% end %>
 				</select>
 			<% else %>
-				<input type="hidden" name="tour[house_id]" value="<%= current_user.houses.first %>"
+				<input type="hidden" name="tour[house_id]" value="<%= current_user.houses.first.id %>">
 			<% end %>
 
 		<input type="file" name="tour[start_img]" id="take-picture" accept='image/*;capture=camera'>

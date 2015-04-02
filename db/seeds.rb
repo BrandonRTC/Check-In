@@ -13,8 +13,20 @@
 #USERS
 
 User.create({
-	username: "Chas",
-	password: "password",
+	username: "John",
+	password: "brandonbedcheck",
+	superuser: true
+})
+
+User.create({
+	username: "Super1",
+	password: "superpassword1",
+	superuser: true
+})
+
+User.create({
+	username: "Super2",
+	password: "superpassword2",
 	superuser: true
 })
 
@@ -91,12 +103,26 @@ User.create({
 #PERMISSIONS
 
 i = 1
-7.times do Permission.create({
-	user_id: 1,
-	house_id: i
+7.times do 
+
+	Permission.create({
+		user_id: User.first.id,
+		house_id: i
 	})
+
+	Permission.create({
+		user_id: User.first.id + 1,
+		house_id: i
+	})
+
+	Permission.create({
+		user_id: User.first.id + 2,
+		house_id: i
+	})
+
 	i+=1
 end
+
 
 q = 2
 z = 1
@@ -197,10 +223,3 @@ end
 		num_beds: ns[i]
 	})
 end
-
-#TOURS
-
-
-#CHECK_INS
-
-
