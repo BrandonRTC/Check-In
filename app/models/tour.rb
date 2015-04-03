@@ -11,6 +11,7 @@ class Tour < ActiveRecord::Base
 	}
 
 	validates :house_id, presence: true
+	validates :start_img, presence: true
 	validates_attachment_content_type :start_img, content_type: /\Aimage\/.*\Z/
 	validates_attachment_content_type :end_img, content_type: /\Aimage\/.*\Z/
 
