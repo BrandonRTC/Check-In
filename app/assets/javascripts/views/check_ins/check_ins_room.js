@@ -10,6 +10,7 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	initialize: function(options){
 		this.subViews = [];
 		this.tour = options.tour;
+		this.completeRooms = [];
 	},
 
 	render: function(){
@@ -19,25 +20,6 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 		this.$el.html(content);
 		return this;
 	},
-
-	// works with html5_qrcode.min.js from dwa012
-	// need to add the html5_qrcode.min.js library back in to use this
-
-	// initializeQR: function(){
-	// 	this.$("#QRreader").html5_qrcode(
-	// 		function(data){
-	// 			// call swapCheckInForms here
-	// 			alert("successfully read a code!");
-	// 			console.log(data);
-	// 		},
-	// 		function(error){
-	// 			alert("generalError");
-	// 		},
-	// 		function(videoError){
-	// 			console.log(videoError);
-	// 		}
-	// 	);
-	// },
 
 	swapCheckInForms: function(name){
 
@@ -78,20 +60,21 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	// needs success callback that calls removeCheckInForms
 	submit: function(event){
 		event.preventDefault();
-
+		var that = this;
 		var attrs = $('form').serializeJSON();
 		var checks = new BrandonApp.Models.CheckInWrapper({tour: this.tour});
 		checks.set(attrs);
 
 		checks.save({}, {
 			success: function(model, resp){
-				console.log(resp);
+				// console.log(resp);
 				if (resp.redirect){
-					console.log(resp.redirect);
-					console.log("should redirect");
+					// console.log(resp.redirect);
+					// console.log("should redirect");
 					window.location.replace(resp.redirect);
 				} else {
-					console.log("success!");
+					// console.log("success!");
+					that.removeCheckInForms();
 					Backbone.history.navigate("", {trigger: true});
 				}
 			},

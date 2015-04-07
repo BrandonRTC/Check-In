@@ -15,24 +15,25 @@ class Api::CheckInsController < ApplicationController
 		@tour = Tour.find(params[:tour_id])
 		# @room = Room.find(check_in_params[:room_id])
 		# @check_in = @tour.check_ins.new(check_in_params)
-		@check_ins = @tour.check_ins.create(new_check_in_params[:check_in]).reject {|c| c.errors.empty?}
 
-		if @check_ins.empty?
-			if @tour.end_of_tour?
-				render json: {redirect: edit_tour_url(@tour.id)}
+		if @tour.validate_new_room(params[:check_in][:room_id])
+
+			@check_ins = @tour.check_ins.create(new_check_in_params[:check_in]).reject {|c| c.errors.empty?}
+
+			if @check_ins.empty?
+				if @tour.end_of_tour?
+					render json: {redirect: edit_tour_url(@tour.id)}
+				else
+					render json: :success
+				end
 			else
-				# need to figure out what should actually be sent back/if below is even valid
-				render json: :success
+				render json: "error message!"
+				# render error messages for what? (since @check_ins is an array), just status unprocessable_entity?
+				# also, double check that this was done properly for backbone
 			end
 		else
-			#CHECK HOW TO DO THIS PROPERLY
-			render json: :errors
-			# render error messages for what? (since @check_ins is an array), just status unprocessable_entity?
+			render json: 
 		end
-	end
-
-	def index
-		@check_ins = CheckIn.all
 	end
 
 	private
@@ -42,24 +43,3 @@ class Api::CheckInsController < ApplicationController
 	end
 
 end
-
-# params visualizations
-
-# list => {
-
-# 	0 => check_in => {status => A, initials => CMM, comment => blah blah, room_id => 4},
-# 	1 => check_in => {...}
-# 	2 => check_in => {...}
-
-# }
-
-# check_in {
-
-# 	0 => {status,init,etc},
-# 	1 => {...},
-# 	2 => {...},
-# 	...
-
-# }
-
-# check_in.to_a 

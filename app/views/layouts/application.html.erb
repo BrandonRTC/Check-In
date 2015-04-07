@@ -5,26 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	  <title>Brandon BedCheck</title>
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-
-		<% if flash.now[:errors] %>
-			<%= flash.now[:errors] %>
-		<% end %>
-
 		<% if !current_user.nil? %>
 			<nav class="top-bar" data-topbar role="navigation">
-
 				<ul class="title-area">
 					<li class="name">
 						<h1><a href="#">Brandon Bed Check</a></h1>
 					</li>
 				</ul>
-
 
 				<section class="top-bar-section">
 					<ul class="left">
@@ -53,10 +47,11 @@
 						</li>
 					</ul>
 				</section>
-
-
 			</nav>
+		<% end %>
 
+		<% if flash.now[:errors] %>
+			<%= flash.now[:errors] %>
 		<% end %>
 
     <%= yield %>

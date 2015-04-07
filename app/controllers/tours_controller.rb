@@ -17,7 +17,8 @@ class ToursController < ApplicationController
 		if @tour.save
 			redirect_to new_tour_check_in_url(@tour)
 		else
-			flash.now[:errors] = @tour.errors.full_messagesd
+			flash.now[:errors] = @tour.errors.full_messages
+			@houses = House.all
 			render :new
 		end
 	end

@@ -135,7 +135,7 @@ function setwebcam() {
     {
         document.getElementById("outdiv").innerHTML = vidhtml;
         v=document.getElementById("v");
-        n.getUserMedia({video: true, audio: false}, success, error);
+        n.getUserMedia({video: {facingMode: "environment"}, audio: false}, success, error);
     }
     else
     if(n.webkitGetUserMedia)
@@ -143,7 +143,7 @@ function setwebcam() {
         document.getElementById("outdiv").innerHTML = vidhtml;
         v=document.getElementById("v");
         webkit=true;
-        n.webkitGetUserMedia({video: true, audio: false}, success, error);
+        n.webkitGetUserMedia({video: {facingMode: "environment"}, audio: false}, success, error);
     }
     else
     if(n.mozGetUserMedia)
@@ -151,7 +151,7 @@ function setwebcam() {
         document.getElementById("outdiv").innerHTML = vidhtml;
         v=document.getElementById("v");
         moz=true;
-        n.mozGetUserMedia({video: true, audio: false}, success, error);
+        n.mozGetUserMedia({video: {facingMode: "environment"}, audio: false}, success, error);
         
     }
     else
