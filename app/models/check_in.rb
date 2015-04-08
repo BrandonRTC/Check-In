@@ -2,11 +2,26 @@ class CheckIn < ActiveRecord::Base
 
 	belongs_to :room
 	belongs_to :tour
+	has_one :house, through: :tour, source: :house
 
 	validates :status, presence: true
 	validates :tour_id, presence: true
 	validates :room_id, presence: true
 
-	#write custom validation to ensure that room_id points to a valid room in the current_user's/tour's house
+	validate :validate_house
+	validate :validate_new_room
 
+	private
+
+	def validate_house
+		unless self.house.rooms.find_index {|r| r.id == self.room_id}
+			errors.add(room_id, "Room must be in your building!")
+		end
+	end
+	
+	def validate_new_room
+		if self.tour.check_ins.find_index { |el| el.room_id == self.room_id }
+			errors.add(room_id, "Can't repeat room")
+		end
+	end
 end

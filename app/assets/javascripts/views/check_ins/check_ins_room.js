@@ -10,7 +10,6 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	initialize: function(options){
 		this.subViews = [];
 		this.tour = options.tour;
-		this.completeRooms = [];
 	},
 
 	render: function(){
@@ -78,9 +77,9 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 					Backbone.history.navigate("", {trigger: true});
 				}
 			},
-			error: function(){
-				alert("fail!")
-				// display whatever the response is
+			error: function(model, resp){
+				alert(resp);
+				// make this more robust
 			}
 		});
 	},

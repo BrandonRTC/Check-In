@@ -7,5 +7,5 @@ BrandonApp.Models.CheckInWrapper = Backbone.Model.extend({
 	initialize: function(options){
 		this.tour_id = options.tour.get("id");
 	}
-
+	
 });

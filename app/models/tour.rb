@@ -16,8 +16,6 @@ class Tour < ActiveRecord::Base
 	validates_attachment_content_type :start_img, content_type: /\Aimage\/.*\Z/
 	validates_attachment_content_type :end_img, content_type: /\Aimage\/.*\Z/
 
-	before_create :validate_room
-
 	# need to find robust way of enforcing that a room is not checked twice!
 	def end_of_tour?
 		self.check_ins.count == self.expected_check_ins
@@ -31,12 +29,12 @@ class Tour < ActiveRecord::Base
 		checks
 	end
 
-	def validate_new_room(room_id)
-		if self.check_ins.find_index { |el| el.id == room_id }
-			true
-		else
-			false
-		end
-	end
+	# def validate_new_room(room_id)
+	# 	if self.check_ins.find_index { |el| el.room_id == room_id }
+	# 		false
+	# 	else
+	# 		true
+	# 	end
+	# end
 	
 end
