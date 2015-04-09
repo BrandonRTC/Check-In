@@ -73,7 +73,6 @@ function htmlEntities(str) {
 
 function read(a) {
     console.log("qr code scanned!", a);
-
     // probably not the best way to hook the two parts up (ask aA?)
     window.BrandonApp.router.currentView.swapCheckInForms(a);
 }	
@@ -84,7 +83,6 @@ function isCanvasSupported() {
 }
 
 function success(stream) {
-    console.log("success!")
     if(webkit)
         v.src = window.URL.createObjectURL(stream);
     else
@@ -100,14 +98,12 @@ function success(stream) {
 }
 		
 function error(error) {
-    console.log("someone called error")
     gUM=false;
     return;
 }
 
 function load()
 {
-    console.log("loads");
 	if(isCanvasSupported() && window.File && window.FileReader)
 	{
 		initCanvas(800,600);
@@ -135,7 +131,7 @@ function setwebcam() {
     {
         document.getElementById("outdiv").innerHTML = vidhtml;
         v=document.getElementById("v");
-        n.getUserMedia({video: {facingMode: "environment"}, audio: false}, success, error);
+        n.getUserMedia({video: true, audio: false}, success, error);
     }
     else
     if(n.webkitGetUserMedia)
@@ -143,7 +139,41 @@ function setwebcam() {
         document.getElementById("outdiv").innerHTML = vidhtml;
         v=document.getElementById("v");
         webkit=true;
-        n.webkitGetUserMedia({video: {facingMode: "environment"}, audio: false}, success, error);
+
+        (function(){
+            MediaStreamTrack.getSources(function(sources){
+                var vidSrc;
+                sources.forEach(function(s){
+                    if (s.kind === "video" & s.facing === "environment") {
+                        vidSrc = s.id;
+                    }
+                });
+                n.webkitGetUserMedia({video: {optional: [{sourceId: vidSrc}]}, audio: false}, success, error);
+            });
+        })();
+
+        // var promise = new Promise(function(resolve, reject){
+        //     MediaStreamTrack.getSources(function(sources){
+        //         var vidSrc;
+        //         sources.forEach(function(s){
+        //             if (s.kind === "video" & s.facing === "environment") {
+        //                 vidSrc = s.id;
+        //             }
+        //         });
+        //         if (vidSrc) {
+        //             resolve(vidSrc);
+        //         } else {
+        //             reject(vidSrc);
+        //         }
+        //     });
+        // });
+        // promise.then(
+        //     function(resp){
+        //     },
+        //     function(resp){
+        //         n.webkitGetUserMedia({video: {optional: [{sourceId: resp}]}, audio: false}, success, error);
+        //     }
+        // );
     }
     else
     if(n.mozGetUserMedia)
@@ -151,7 +181,7 @@ function setwebcam() {
         document.getElementById("outdiv").innerHTML = vidhtml;
         v=document.getElementById("v");
         moz=true;
-        n.mozGetUserMedia({video: {facingMode: "environment"}, audio: false}, success, error);
+        n.mozGetUserMedia({video: true, audio: false}, success, error);
         
     }
     else
@@ -160,6 +190,5 @@ function setwebcam() {
     // document.getElementById("qrimg").src="images/upload2.jpg";
     // document.getElementById("webcamimg").src="images/webcam1.jpg";
     stype=1;
-    console.log("hits 'else' in setwebcam function")
     setTimeout(captureToCanvas, 500);
 }
