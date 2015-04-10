@@ -14,14 +14,16 @@ class CheckIn < ActiveRecord::Base
 	private
 
 	def validate_house
-		unless self.house.rooms.find_index {|r| r.id == self.room_id}
-			errors.add(room_id, "Room must be in your building!")
+		check = self
+		unless self.house.rooms.find_index {|r| r.id == check.room_id}
+			errors.add(:room_id, "Room must be in your building!")
 		end
 	end
 	
 	def validate_new_room
-		if self.tour.check_ins.find_index { |el| el.room_id == self.room_id }
-			errors.add(room_id, "Can't repeat room")
+		check = self
+		if self.tour.check_ins.find_index { |el| el.room_id == check.room_id }
+			errors.add(:room_id, "Can't repeat room")
 		end
 	end
 end

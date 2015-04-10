@@ -21,11 +21,11 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	},
 
 	swapCheckInForms: function(name){
-
+		// MAKE ANOTHER SUBVIEW FOR THE SUBMIT BUTTON TO AVOID CONFUSION
 		// var room_id = parseInt($('#room_select').val());
 
 		var room = this.collection.findWhere({room_name: name})
-		var room_id = room.get("room_id");
+		var room_id = room.get("id");
 
 		if (this.subViews.length > 0 || room_id === -1) {
 			this.removeCheckInForms();
@@ -78,7 +78,8 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 				}
 			},
 			error: function(model, resp){
-				alert(resp);
+				alert("Server error", resp);
+				console.log("the error response", resp);
 				// make this more robust
 			}
 		});
