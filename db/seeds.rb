@@ -123,9 +123,11 @@ i = 1
 	i+=1
 end
 
-
-q = 2
+#BEWARE HARD CODED STARTING IDS!
+#(probably maybe should cook up a more robust way to assign ids)
+q = 4
 z = 1
+
 14.times do Permission.create({
 	user_id: q,
 	house_id: z
