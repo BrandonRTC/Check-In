@@ -78,7 +78,7 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 				}
 			},
 			error: function(model, resp){
-				alert("Server error", resp);
+				// alert("Server error", resp);
 				console.log("the error response", resp);
 				// make this more robust
 			}
