@@ -12,7 +12,6 @@ class CheckIn < ActiveRecord::Base
 	# validate :validate_new_room
 
 	private
-
 	# def validate_house
 	# 	check = self
 	# 	unless self.house.rooms.find_index {|r| r.id == check.room_id}

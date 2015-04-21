@@ -21,20 +21,17 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	},
 
 	swapCheckInForms: function(name){
-		// MAKE ANOTHER SUBVIEW FOR THE SUBMIT BUTTON TO AVOID CONFUSION
-		// var room_id = parseInt($('#room_select').val());
-
 		var room = this.collection.findWhere({room_name: name})
 		var room_id = room.get("id");
+		var room_name = room.get("room_name");
+		var num_beds = room.get('num_beds');
 
 		if (this.subViews.length > 0 || room_id === -1) {
 			this.removeCheckInForms();
 		}
+		
+		$("#room-name").html(room_name);
 
-		// var room = this.collection.get(room_id);
-		var num_beds = room.get('num_beds');
-
-		// look up alternative to 'for' loop (low priority)
 		for (var i = 0; i < num_beds; i++) {
 			var view = new BrandonApp.Views.CheckInForm({
 				room_id: room_id
@@ -61,26 +58,27 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 		event.preventDefault();
 		var that = this;
 		var attrs = $('form').serializeJSON();
+
+		// makes use of wrapper model to submit multiple bed checks at once
 		var checks = new BrandonApp.Models.CheckInWrapper({tour: this.tour});
 		checks.set(attrs);
 
 		checks.save({}, {
 			success: function(model, resp){
-				// console.log(resp);
 				if (resp.redirect){
-					// console.log(resp.redirect);
-					// console.log("should redirect");
 					window.location.replace(resp.redirect);
 				} else {
-					// console.log("success!");
+					// grabs room_id from first bedcheck in wrapper model and uses it to highlight finished room
+					var id = "#" + model.get("room").check_in[0].room_id;
+					$(id).removeClass("custom");
+					$(id).addClass("callout");
 					that.removeCheckInForms();
 					Backbone.history.navigate("", {trigger: true});
 				}
 			},
 			error: function(model, resp){
-				// alert("Server error", resp);
+				// MAKE THIS ROBUST
 				console.log("the error response", resp);
-				// make this more robust
 			}
 		});
 	},

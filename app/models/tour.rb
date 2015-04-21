@@ -11,10 +11,9 @@ class Tour < ActiveRecord::Base
 	}
 
 	validates :house_id, presence: true
-	validates :start_img, presence: true
 
-	# validates_attachment_content_type :start_img, content_type: /\Aimage\/.*\Z/
-	# validates_attachment_content_type :end_img, content_type: /\Aimage\/.*\Z/
+	validates :start_img_fingerprint, uniqueness: {message: "Image must be unique!"}
+	validates :end_img_fingerprint, uniqueness: {message: "Image must be unique!"}, allow_nil: true
 
 	validates_attachment :start_img, presence: true, content_type: { content_type: ["image/png", "image/jpeg"]}
 	validates_attachment :end_img, content_type: { content_type: ["image/png", "image/jpeg"]}

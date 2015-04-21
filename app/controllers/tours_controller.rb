@@ -13,7 +13,6 @@ class ToursController < ApplicationController
 
 	def create
 		@tour = Tour.new(new_tour_params)
-
 		if @tour.save
 			redirect_to new_tour_check_in_url(@tour)
 		else

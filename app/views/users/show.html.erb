@@ -16,18 +16,22 @@
 		writeDate();
 	}, 60000)
 
-	function writeDate(){
+	function writeDate() {
 		var date = new Date();
 		var datestr = formatDate(date);
 		$("#nextTourButton").html(datestr);	
 	}
-
+// 1:55
 	function formatDate(date) {
 	  var hours = date.getHours();
 	  var minutes = date.getMinutes();
-	  while(minutes % 15 != 0)(
+	  while (minutes % 15 != 0){
 	  	minutes += 1
-	  )
+	  }
+	  if (minutes === 60){
+	  	minutes = 0
+	  	hours += 1	
+	  }
 	  var ampm = hours >= 12 ? 'pm' : 'am';
 	  hours = hours % 12;
 	  hours = hours ? hours : 12; // the hour '0' should be '12'

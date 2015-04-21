@@ -2719,6 +2719,7 @@ meta.foundation-mq-topbar {
     border-radius: 3px; }
 
     /*BRANDON APP CUSTOM CSS*/
+    /*might re-label custom as 'incomplete' */
   .panel.custom {
     background-color: #bbb; }
   .panel.tour-incomplete {

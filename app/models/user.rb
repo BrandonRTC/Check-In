@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
 	has_many :permissions
 	has_many :houses, through: :permissions, source: :house
-
+	has_many :tours, through: :houses, source: :tours
+	
 	validates :username, presence: true
 	validates :password_digest, presence: {message: "Password can't be blank"}
 	validates :password, length: {minimum: 6, allow_nil: true}

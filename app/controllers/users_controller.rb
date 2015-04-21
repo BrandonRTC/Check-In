@@ -23,8 +23,10 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		#the instance variable isn't actually necessary here
 		#double check this to make sure it works properly
 		@user = User.find(current_user.id) #can also use params[:id]
+		@tour = current_user.tours.where
 		render :show
 	end
 

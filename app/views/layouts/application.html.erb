@@ -51,7 +51,14 @@
 		<% end %>
 
 		<% if flash.now[:errors] %>
-			<%= flash.now[:errors] %>
+		<div class="row">
+			<section id="errors" class="small-8 columns small-centered">
+				<% flash.now[:errors].each do |e| %>
+				<%= e %>
+				<br>
+				<% end %>
+			</section>
+		</div>
 		<% end %>
 
     <%= yield %>

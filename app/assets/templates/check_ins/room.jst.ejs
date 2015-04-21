@@ -1,3 +1,16 @@
+<div class="row">
+	<div class="small-12 columns small-centered">
+		<div class="row">
+			<ul class="inline-list panel small-9 columns small-centered">
+				<% rooms.forEach(function(room){ %>
+					<li class="panel custom" id="<%= room.get('id')%>"><%= room.get('room_name') %></li>
+				<% }) %>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
 	<div class="row">
 	  <div id="outdiv" class="small-8 columns small-centered panel" >
 	  </div>
@@ -13,6 +26,14 @@
 			</select>
 		</div>
 	</div> -->
+
+	<div class="row">
+		<div class="small-8 columns small-centered">
+			<div class="row">
+				<h3 id="room-name" class="small-4 columns small-centered"></h3>
+			</div>
+		</div>
+	</div>
 
 	<form id="check_in_form" action="" method="post">
 		<input type="hidden" name="authenticity_token" value="#{form_authenticity_token}">
