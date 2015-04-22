@@ -8,8 +8,9 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	},
 
 	initialize: function(options){
-		this.subViews = [];
 		this.tour = options.tour;
+		this.subViews = [];
+		this.roomsVisited = [];
 	},
 
 	render: function(){
@@ -56,6 +57,7 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	// needs success callback that calls removeCheckInForms
 	submit: function(event){
 		event.preventDefault();
+
 		var that = this;
 		var attrs = $('form').serializeJSON();
 
@@ -63,24 +65,32 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 		var checks = new BrandonApp.Models.CheckInWrapper({tour: this.tour});
 		checks.set(attrs);
 
-		checks.save({}, {
-			success: function(model, resp){
-				if (resp.redirect){
-					window.location.replace(resp.redirect);
-				} else {
-					// grabs room_id from first bedcheck in wrapper model and uses it to highlight finished room
-					var id = "#" + model.get("room").check_in[0].room_id;
-					$(id).removeClass("custom");
-					$(id).addClass("callout");
-					that.removeCheckInForms();
-					Backbone.history.navigate("", {trigger: true});
+		if (_.contains(this.roomsVisited, checks.get("room").check_in[0].room_id)) {
+			alert("Can't check same room twice!");
+		} else {
+			checks.save({}, {
+				success: function(model, resp){
+					if (resp.redirect){
+						window.location.replace(resp.redirect);
+					} else {
+						// grabs room_id from first bedcheck in wrapper model and uses it to highlight finished room
+						var id = model.get("room").check_in[0].room_id;
+						var element_id = "#" + id;
+						that.roomsVisited.push(id);
+						$(element_id).removeClass("custom");
+						$(element_id).addClass("callout");
+						$("#room-name").html("");
+						that.removeCheckInForms();
+						Backbone.history.navigate("", {trigger: true});
+					}
+				},
+				error: function(model, resp){
+					// MAKE THIS ROBUST
+					alert(resp.responseText);
+					console.log("the error response", resp);
 				}
-			},
-			error: function(model, resp){
-				// MAKE THIS ROBUST
-				console.log("the error response", resp);
-			}
-		});
+			});
+		}
 	},
 
 	// leave is for switching out the entire view
