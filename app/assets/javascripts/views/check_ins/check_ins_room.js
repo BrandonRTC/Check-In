@@ -10,7 +10,7 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	initialize: function(options){
 		this.tour = options.tour;
 		this.subViews = [];
-		this.roomsVisited = [];
+		this.roomsVisited = options.roomsVisited || [];
 	},
 
 	render: function(){

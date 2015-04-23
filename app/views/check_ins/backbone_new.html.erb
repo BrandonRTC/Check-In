@@ -6,7 +6,11 @@
 </script>
 
 <script type="text/javascript" id="tour-json">
-<%= @tour.to_json.html_safe %>
+	<%= @tour.to_json.html_safe %>
+</script>	
+
+<script type="text/javascript" id="visited-json">
+	<%= @rooms_visited.to_json.html_safe %>
 </script>	
 
 <script type="text/javascript">
@@ -14,13 +18,9 @@
 		var deferred = $.Deferred();
 		var roomsJson = JSON.parse($("#rooms-json").html());
 		var tourJson = JSON.parse($("#tour-json").html());
+		var visitedJson = JSON.parse($("#visited-json").html());
 
-	  // BrandonApp.initialize(roomsJson, tourJson, $("#check-in-main-content"));
-	  // setTimeout(function(){
-	  // 	setwebcam();
-	  // }, 3000);
-	
 	  deferred.done(BrandonApp.initialize).done(setwebcam).done(load);
-	  deferred.resolve(roomsJson, tourJson, $("#check-in-main-content"))
+	  deferred.resolve(roomsJson, tourJson, visitedJson, $("#check-in-main-content"))
 });
 </script>

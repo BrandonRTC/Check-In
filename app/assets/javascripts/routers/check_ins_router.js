@@ -4,6 +4,7 @@ BrandonApp.Routers.CheckIns = Backbone.Router.extend({
 		this.$rootEl = options.$rootEl;
 		this.rooms = options.rooms;
 		this.tour = options.tour;
+		this.visited = options.visited;
 	},
 
 	// issue is that 'new' needs to be default view for now, but that might screw things up later
@@ -17,7 +18,8 @@ BrandonApp.Routers.CheckIns = Backbone.Router.extend({
 	new: function(){
 		var newView = new BrandonApp.Views.CheckInRoom({
 			collection: this.rooms,
-			tour: this.tour
+			tour: this.tour,
+			roomsVisited: this.visited
 			// collection: new BrandonApp.Collections.CheckIns(),
 			// model: new BrandonApp.Models.CheckIn()
 		});
@@ -29,7 +31,18 @@ BrandonApp.Routers.CheckIns = Backbone.Router.extend({
 			this.currentView.remove();
 		}
 		this.$rootEl.html(newView.render().$el);
+		this._highlightRoooms();
 		this.currentView = newView;
+	},
+
+	_highlightRoooms: function(){
+		if (this.visited.length > 0) {
+			this.visited.forEach(function(room_id){
+				id = "#" + room_id;
+				$(id).removeClass("custom");
+				$(id).addClass("callout");
+			});
+		}
 	}
 
 });
