@@ -3,12 +3,17 @@ class Tour < ActiveRecord::Base
 	belongs_to :house
 	has_many :check_ins
 
-	has_attached_file :start_img, styles: {
-		small: "200x200#"
-	}
-	has_attached_file :end_img, styles: {
-		small: "200x200#"
-	}
+	has_attached_file :start_img, 
+		styles: {small: "200x200#"},
+		s3_protocol: "https",
+		url: ":s3_domain_url",
+		path: "/:class/:attachment/:id_partition/:style/:filename"
+
+	has_attached_file :end_img,
+		styles: {small: "200x200#"},
+		s3_protocol: "https",
+		url: ":s3_domain_url",
+		path: "/:class/:attachment/:id_partition/:style/:filename"
 
 	validates :house_id, presence: true
 
