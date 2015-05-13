@@ -1,59 +1,47 @@
 <div class="row">
-	<div class="small-5 columns small-centered">
+	<div class="small-7 columns small-centered">
 		<h2>Completed Check-Ins</h2>
 	</div>
 </div>
 
 <div class="row">
-	<div class="small-12 columns">
-		<ul class="no-bullet">
-			<% @check_ins.each do |c| %>
-				<li class="panel custom">
-					<div class="row">
-						<div class="small-6 columns">
-							<section class="panel">
-								Status: <%= c.status %>
-							</section>
-						</div>
-						
-						<div class="small-6 columns">
-							<section class="panel">
-								Youth Initials: 
-									<% unless c.initials.empty? %>
-										<%= c.initials %>
-									<% else %>
-										N/A
-									<% end %>
-							</section>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="small-12 columns">
-							<section class="panel">
-								Comment: 
-									<% unless c.comment.empty? %>
-										<%= c.comment %>
-									<% else %>
-										N/A
-									<% end %>
-							</section>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="small-6 columns"><section class="panel">Room: <%= c.room.room_name %></section></div>
-						<div class="small-6 columns"><section class="panel">House: <%= c.tour.house.house_name %></section></div>
-					</div>
-
-					<div class="row">
-						<div class="small-12 columns">
-							<section class="panel">Submitted: <%= format_date_time(c.created_at) %></section>
-						</div>
-					</div>
-				</li>
-			<% end %>
-		</ul>
+	<div class="small-9 columns small-centered">
+		<table class="check-in-table">
+			<thead>
+				<tr>
+					<td>Status</td>
+					<td>Youth Initials</td>
+					<td>Comment</td>
+					<td>Room</td>
+					<td>House</td>
+					<td>Time</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @check_ins.each do |c| %>	
+					<tr>
+						<td><%= c.status %></td>
+						<td>
+							<% unless c.initials.empty? %>
+								<%= c.initials %>
+							<% else %>
+								N/A
+							<% end %>
+						</td>
+						<td>
+							<% unless c.comment.empty? %>
+								<%= c.comment %>
+							<% else %>
+								N/A
+							<% end %>
+						</td>
+						<td><%= c.room.room_name %></td>
+						<td><%= c.tour.house.house_name %></td>
+						<td><%= format_date_time(c.created_at) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>
 

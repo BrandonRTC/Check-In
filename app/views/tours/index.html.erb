@@ -1,10 +1,37 @@
 <div class="row">
-	<div class="small-12 columns small-centered">
+	<div class="small-5 columns small-centered">
 		<h2>Tour Review</h2>
 	</div>
 </div>
 
 <div class="row">
+	<div class="small-10 columns small-centered">
+		<table>
+			<thead>
+				<tr>
+					<td>House</td>
+					<td>Start Time</td>
+					<td>Start Image</td>
+					<td>End Time</td>
+					<td>End Image</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @tours.each do |t| %>
+					<tr>
+						<td><%= t.house.house_name %></td>
+						<td><%= format_date_time(t.created_at) %></td>
+						<td><%= image_tag t.start_img.url(:small) %></td>
+						<td><%= format_date_time(t.updated_at) %></td>
+						<td><%= image_tag t.end_img.url(:small) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- <div class="row">
 	<div class="small-12 columns small-centered">
 		<ul class="no-bullet">
 			<% @tours.each do |t| %>
@@ -36,7 +63,7 @@
 			<% end %>
 		</ul>
 	</div>
-</div>
+</div> -->
 
 <div id="paginateTours">
 	<%= paginate @tours %>

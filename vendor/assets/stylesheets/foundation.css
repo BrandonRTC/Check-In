@@ -1,5 +1,5 @@
 /*custom panels at 2719*/
-/*need to make giant custom button*/
+/*custom button at 1219*/
 meta.foundation-version {
   font-family: "/5.5.1/"; }
 
@@ -1216,15 +1216,6 @@ button, .button {
     padding-bottom: 1.1875rem;
     padding-left: 2.25rem;
     font-size: 1.25rem; }
-  /*BRANDONAPP CUSTOM BUTTON*/
-  button.huge, .button.huge {
-    padding-top: 1.375rem;
-    padding-right: 2.75rem;
-    padding-bottom: 1.4375rem;
-    padding-left: 2.75rem;
-    font-size: 1.6875rem;  
-  }
-  /*END CUSTOM*/
   button.small, .button.small {
     padding-top: 0.875rem;
     padding-right: 1.75rem;
@@ -2726,15 +2717,6 @@ meta.foundation-mq-topbar {
         color: #0078a0; }
   .panel.radius {
     border-radius: 3px; }
-
-    /*BRANDON APP CUSTOM CSS*/
-    /*might re-label custom as 'incomplete' */
-  .panel.custom {
-    background-color: #bbb; }
-  .panel.tour-incomplete {
-    background-color: #fffc61;
-  }
-
 .dropdown.button, button.dropdown {
   position: relative;
   outline: none;

@@ -8,7 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
+x * file per style scope.
  *
  *= require_tree .
  *= require_self
@@ -30,3 +30,28 @@
 #errors {
 	color: red;
 }
+
+.check-in-table > tbody > tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+.check-in-table > tbody > tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+button.huge, .button.huge {
+  padding-top: 1.375rem;
+  padding-right: 2.75rem;
+  padding-bottom: 1.4375rem;
+  padding-left: 2.75rem;
+  font-size: 1.6875rem;  
+}
+
+.panel.custom {
+  background-color: #bbb;
+}
+
+.panel.tour-incomplete {
+  background-color: #fffc61;
+}
+

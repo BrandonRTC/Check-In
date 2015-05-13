@@ -22,6 +22,9 @@ BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 	},
 
 	swapCheckInForms: function(name){
+		// // delete next line
+		// var select_name = $("#room_select").val();
+		// // change select_name below back to just name
 		var room = this.collection.findWhere({room_name: name})
 		var room_id = room.get("id");
 		var room_name = room.get("room_name");
