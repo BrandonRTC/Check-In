@@ -16,6 +16,7 @@ class Tour < ActiveRecord::Base
 		path: "/:class/:attachment/:id_partition/:style/:filename"
 
 	validates :house_id, presence: true
+	validates :timeslot, numericality: {only_integer: true, less_than: 4, greater_than_or_equal_to: 0}
 
 	validates :start_img_fingerprint, uniqueness: {message: "Image must be unique!"}
 	validates :end_img_fingerprint, uniqueness: {message: "Image must be unique!"}, allow_nil: true

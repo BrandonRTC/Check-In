@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416220252) do
+ActiveRecord::Schema.define(version: 20150724035639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150416220252) do
     t.datetime "end_img_updated_at"
     t.string   "start_img_fingerprint"
     t.string   "end_img_fingerprint"
+    t.integer  "timeslot"
   end
 
   add_index "tours", ["house_id"], name: "index_tours_on_house_id", using: :btree

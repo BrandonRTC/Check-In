@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.serializejson.min
 //= require jquery_ujs
+//= require jquery-readyselector
 //= require llqrcode.min
 //= require qr_script
 //= require underscore

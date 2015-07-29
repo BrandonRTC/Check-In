@@ -19,7 +19,11 @@ class SessionsController < ApplicationController
 			render :new
 		else
 			login!(@user)
-			redirect_to user_url(@user)
+			if @user.superuser
+				redirect_to houses_url
+			else
+				redirect_to user_url(@user)
+			end
 		end
 	end
 

@@ -11,7 +11,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
 		<% if !current_user.nil? %>
 			<nav class="top-bar" data-topbar role="navigation">
 				<ul class="title-area">

@@ -36,4 +36,23 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url if current_user.nil?
   end
 
+  def get_tour_time_slots
+    minutes = Time.now.min
+    if Time.now.hour > 0
+      hour = Time.now.hour % 12
+    else
+      hour = 12
+    end
+
+    if minutes >= 45
+      return {"#{hour}:30" => 2, "#{hour}:45" => 3}
+    elsif minutes >= 30 && minutes < 45
+      return {"#{hour}:15" => 1, "#{hour}:30" => 2}
+    elsif minutes >= 15 && minutes < 30
+      return {"#{hour}:00" => 0, "#{hour}:15" => 1}
+    else
+      return {"#{(hour - 1)}:45" => 3, "#{hour}:00" => 0}
+    end
+  end
+
 end

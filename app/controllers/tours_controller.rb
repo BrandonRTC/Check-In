@@ -7,8 +7,8 @@ class ToursController < ApplicationController
 	end
 
 	def new 
-		@tour = Tour.new
 		@houses = House.all
+		@timeslots = get_tour_time_slots
 	end
 
 	def create
@@ -18,6 +18,7 @@ class ToursController < ApplicationController
 		else
 			flash.now[:errors] = @tour.errors.full_messages
 			@houses = House.all
+			@timeslots = get_tour_time_slots
 			render :new
 		end
 	end
@@ -41,7 +42,7 @@ class ToursController < ApplicationController
 	private
 
 	def new_tour_params
-		params.require(:tour).permit(:house_id, :start_img)
+		params.require(:tour).permit(:house_id, :start_img, :timeslot)
 	end
 
 	def edit_tour_params
