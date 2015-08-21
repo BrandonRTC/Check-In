@@ -1,11 +1,13 @@
-BrandonApp.Models.CheckIn = Backbone.Model.extend({
+$(".check_ins.new").ready(function(){
+	BrandonApp.Models.CheckIn = Backbone.Model.extend({
 
-	// urlRoot: "api/check_ins"
+		// urlRoot: "api/check_ins"
 
-	// parse: function(){}
+		// parse: function(){}
 
-	// toJSON: function(){}
+		// toJSON: function(){}
 
-	// validate: function(){}
+		// validate: function(){}
 
+	});
 });

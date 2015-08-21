@@ -47,6 +47,8 @@ button.huge, .button.huge {
   font-size: 1.6875rem;  
 }
 
+/*tour statuses, etc*/
+
 .panel.custom {
   background-color: #bbb;
 }
@@ -75,3 +77,8 @@ button.huge, .button.huge {
   background-color: yellow;
 }
 
+/*no bullets */
+
+li {
+  list-style-type: none;
+}

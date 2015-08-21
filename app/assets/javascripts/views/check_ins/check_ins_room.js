@@ -1,105 +1,105 @@
-BrandonApp.Views.CheckInRoom = Backbone.View.extend({
-	template: JST["check_ins/room"],
+$(".check_ins.new").ready(function(){
+	BrandonApp.Views.CheckInRoom = Backbone.View.extend({
+		template: JST["check_ins/room"],
 
-	// event needs to be updated when QR scanner implemented
-	events: {
-		'change #room_select' : 'swapCheckInForms',
-		'click #check_room' : 'submit',
-	},
+		// event needs to be updated when QR scanner implemented
+		events: {
+			'change #room_select' : 'swapCheckInForms',
+			'click #check_room' : 'submit',
+		},
 
-	initialize: function(options){
-		this.tour = options.tour;
-		this.subViews = [];
-		this.roomsVisited = options.roomsVisited || [];
-	},
+		initialize: function(options){
+			this.tour = options.tour;
+			this.subViews = [];
+			this.roomsVisited = options.roomsVisited || [];
+		},
 
-	render: function(){
-		var content = this.template({
-			rooms: this.collection
-		});
-		this.$el.html(content);
-		return this;
-	},
-
-	swapCheckInForms: function(name){
-		// // delete next line
-		// var select_name = $("#room_select").val();
-		// // change select_name below back to just name
-		var room = this.collection.findWhere({room_name: name})
-		var room_id = room.get("id");
-		var room_name = room.get("room_name");
-		var num_beds = room.get('num_beds');
-
-		if (this.subViews.length > 0 || room_id === -1) {
-			this.removeCheckInForms();
-		}
-		
-		$("#room-name").html(room_name);
-
-		for (var i = 0; i < num_beds; i++) {
-			var view = new BrandonApp.Views.CheckInForm({
-				room_id: room_id
+		render: function(){
+			var content = this.template({
+				rooms: this.collection
 			});
-			this.subViews.push(view);
-			$("#check_in_list").append(view.render().$el);
-		}
-	},
+			this.$el.html(content);
+			return this;
+		},
 
-	// useful for both switching the main view and for preparing for next room of check_ins
-	removeCheckInForms: function(){
-		_.each(this.subViews, function(subView){
-			subView.leave();
-		});
-	},
+		swapCheckInForms: function(name){
+			
+			var room = this.collection.findWhere({room_name: name})
+			var room_id = room.get("id");
+			var room_name = room.get("room_name");
+			var num_beds = room.get('num_beds');
 
-	get_url: function(){
-		return "/api/tours/" + this.tour.get("id") + "/check_ins"
-	},
+			if (this.subViews.length > 0 || room_id === -1) {
+				this.removeCheckInForms();
+			}
+			
+			$("#room-name").html(room_name);
 
-	// use to serialize json, make server calls, etc.
-	// needs success callback that calls removeCheckInForms
-	submit: function(event){
-		event.preventDefault();
+			for (var i = 0; i < num_beds; i++) {
+				var view = new BrandonApp.Views.CheckInForm({
+					room_id: room_id
+				});
+				this.subViews.push(view);
+				$("#check_in_list").append(view.render().$el);
+			}
+		},
 
-		var that = this;
-		var attrs = $('form').serializeJSON();
+		// useful for both switching the main view and for preparing for next room of check_ins
+		removeCheckInForms: function(){
+			_.each(this.subViews, function(subView){
+				subView.leave();
+			});
+		},
 
-		// makes use of wrapper model to submit multiple bed checks at once
-		var checks = new BrandonApp.Models.CheckInWrapper({tour: this.tour});
-		checks.set(attrs);
+		get_url: function(){
+			return "/api/tours/" + this.tour.get("id") + "/check_ins"
+		},
 
-		if (_.contains(this.roomsVisited, checks.get("room").check_in[0].room_id)) {
-			alert("Can't check same room twice!");
-		} else {
-			checks.save({}, {
-				success: function(model, resp){
-					if (resp.redirect){
-						window.location.replace(resp.redirect);
-					} else {
-						// grabs room_id from first bedcheck in wrapper model and uses it to highlight finished room
-						var id = model.get("room").check_in[0].room_id;
-						var element_id = "#" + id;
-						that.roomsVisited.push(id);
-						$(element_id).removeClass("custom");
-						$(element_id).addClass("callout");
-						$("#room-name").html("");
-						that.removeCheckInForms();
-						Backbone.history.navigate("", {trigger: true});
+		// use to serialize json, make server calls, etc.
+		// needs success callback that calls removeCheckInForms
+		submit: function(event){
+			event.preventDefault();
+
+			var that = this;
+			var attrs = $('form').serializeJSON();
+
+			// makes use of wrapper model to submit multiple bed checks at once
+			var checks = new BrandonApp.Models.CheckInWrapper({tour: this.tour});
+			checks.set(attrs);
+
+			if (_.contains(this.roomsVisited, checks.get("room").check_in[0].room_id)) {
+				alert("Can't check the same room twice!");
+			} else {
+				checks.save({}, {
+					success: function(model, resp){
+						if (resp.redirect){
+							window.location.replace(resp.redirect);
+						} else {
+							// grabs room_id from first bedcheck in wrapper model and uses it to highlight finished room
+							var id = model.get("room").check_in[0].room_id;
+							var element_id = "#" + id;
+							that.roomsVisited.push(id);
+							$(element_id).removeClass("custom");
+							$(element_id).addClass("callout");
+							$("#room-name").html("");
+							that.removeCheckInForms();
+							Backbone.history.navigate("", {trigger: true});
+						}
+					},
+					error: function(model, resp){
+						// MAKE THIS ROBUST
+						alert(resp.responseText);
+						console.log("the error response", resp);
 					}
-				},
-				error: function(model, resp){
-					// MAKE THIS ROBUST
-					alert(resp.responseText);
-					console.log("the error response", resp);
-				}
-			});
-		}
-	},
+				});
+			}
+		},
 
-	// leave is for switching out the entire view
-	// (e.g. for when you change to the index view when this is an actual one page app)
-	leave: function(){
-		this.removeCheckInForms();
-		this.remove;
-	}
+		// leave is for switching out the entire view
+		// (e.g. for when you change to the index view when this is an actual one page app)
+		leave: function(){
+			this.removeCheckInForms();
+			this.remove;
+		}
+	});
 });

@@ -1,0 +1,18 @@
+<div id="tour-tracker-main-content">
+</div>
+
+<script type="application/json" id="houses-json">
+	<%= @houses.to_json.html_safe %>
+</script>
+
+<script type="application/json" id="tours-json">
+	<%= @tours.to_json.html_safe %>
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var housesJson = JSON.parse($("#houses-json").html());
+		var toursJson = JSON.parse($("#tours-json").html());
+		BrandonApp.initialize(housesJson, toursJson, $("#tour-tracker-main-content"));
+	});
+</script>

@@ -1,9 +1,9 @@
-$(".houses.index").ready() {
-	$(){
-		socket = new WebSocket("ws://" + window.location.host +"/houses");
+$(".houses.index").ready(function(){
+	// $(){
+	// 	socket = new WebSocket("ws://" + window.location.host +"/houses");
 
-		socket.onmessage = function (event){
-		};
+	// 	socket.onmessage = function (event) {
+	// 	};
 
-	};
-};
+	// };
+});

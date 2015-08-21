@@ -1,5 +1,7 @@
-BrandonApp.Views.ToursIndex = Backbone.View.extend({
+$(".tours.index").ready(function(){
+	BrandonApp.Views.ToursIndex = Backbone.View.extend({
 
-  template: JST['tours/index']
+	  template: JST['tours/index']
 
+	});
 });

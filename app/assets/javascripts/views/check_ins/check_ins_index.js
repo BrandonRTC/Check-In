@@ -1,5 +1,7 @@
-BrandonApp.Views.CheckInsIndex = Backbone.View.extend({
+$(".check_ins.index").ready(function(){
+	BrandonApp.Views.CheckInsIndex = Backbone.View.extend({
 
-  template: JST['check_ins/index']
+	  template: JST['check_ins/index']
 
+	});
 });

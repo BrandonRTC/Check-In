@@ -1,11 +1,20 @@
-BrandonApp.Models.Tour = Backbone.Model.extend({
+$(".check_ins.new").ready(function(){
+	BrandonApp.Models.Tour = Backbone.Model.extend({
 
-	// urlRoot: ""
-
-	// parse: function(jsonResp){}
-
-	// toJSON: function(){}
-
-	// validate: function(){}
-
+	});
 });
+
+$(".houses.index").ready(function(){
+	BrandonApp.Models.Tour = Backbone.Model.extend({
+
+		// urlRoot: ""
+
+		// parse: function(jsonResp){}
+
+		// toJSON: function(){}
+
+		// validate: function(){}
+
+	});
+});
+

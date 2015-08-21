@@ -36,6 +36,20 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url if current_user.nil?
   end
 
+  def get_shift_start
+    if Time.now.hour >= 18
+      time = Time.now.change({hour: 18})
+    elsif Time.now.hour < 18
+      unless Time.now.day == 1
+        time = Time.now.change({hour: 18, day: Time.now.day - 1})
+      else
+        new_date = Date.today - 1
+        time = Time.now.change({hour: 18, day: new_date.day, month: new_date.month})
+      end
+    end
+    time
+  end
+      
   def get_tour_time_slots
     minutes = Time.now.min
     if Time.now.hour > 0

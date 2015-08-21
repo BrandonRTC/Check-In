@@ -1,9 +1,23 @@
-BrandonApp.Collections.Tours = Backbone.Collection.extend({
+$(".check_ins.new").ready(function(){
+	BrandonApp.Collections.Tours = Backbone.Collection.extend({
 
-  model: BrandonApp.Models.Tour
+	  model: BrandonApp.Models.Tour
 
-  // url: "api/tours"
+	  // url: "api/tours"
 
-  // initialize: function(attribute){}
+	  // initialize: function(attribute){}
 
+	});
+});
+
+$(".houses.index").ready(function(){
+	BrandonApp.Collections.Tours = Backbone.Collection.extend({
+
+	  model: BrandonApp.Models.Tour
+
+	  // url: "api/tours"
+
+	  // initialize: function(attribute){}
+
+	});
 });

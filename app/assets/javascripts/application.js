@@ -18,7 +18,8 @@
 //= require qr_script
 //= require underscore
 //= require backbone
-//= require brandon_app
+//= require brandon_check_in
+//= require brandon_tracker
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
