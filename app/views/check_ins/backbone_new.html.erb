@@ -21,6 +21,6 @@
 		var visitedJson = JSON.parse($("#visited-json").html());
 
 	  deferred.done(BrandonApp.initialize).done(setwebcam).done(load);
-	  deferred.resolve(roomsJson, tourJson, visitedJson, $("#check-in-main-content"))
+	  deferred.resolve(roomsJson, tourJson, visitedJson, $("#check-in-main-content"));
 });
 </script>

@@ -4,7 +4,7 @@ $(".houses.index").ready(function(){
 
 		tagName: "div",
 
-		className: "panel row custom",
+		className: "panel row custom house",
 
 		events: {
 			
@@ -28,10 +28,13 @@ $(".houses.index").ready(function(){
 				var hour = toursHour[1];
 				var view = new BrandonApp.Views.HouseHour({
 					tours: tours,
-					hour: hour
+					hour: hour,
+					hourCounter: i,
+					houseID: this.model.get("id")
 				});
 				this.subviews.push(view);
-				this.$el.append(view.render().$el);
+				this.$(".shift").append(view.render().$el);
+				// this.$el.append(view.render().$el);
 			}
 			return this;
 		},

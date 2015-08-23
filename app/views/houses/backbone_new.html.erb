@@ -9,10 +9,26 @@
 	<%= @tours.to_json.html_safe %>
 </script>
 
+<%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.js" %>
+
 <script type="text/javascript">
+
+	// $(document).ready(function(){
+	// 	var deferred = $.Deferred();
+	// 	var housesJson = JSON.parse($("#houses-json").html());
+	// 	var toursJson = JSON.parse($("#tours-json").html());
+
+	// 	deferred.done(BrandonApp.initialize).done($(document).foundation);
+	// 	deferred.resolve(housesJson, toursJson, $("#tour-tracker-main-content"));
+	// });
+
+
+
 	$(document).ready(function(){
 		var housesJson = JSON.parse($("#houses-json").html());
 		var toursJson = JSON.parse($("#tours-json").html());
 		BrandonApp.initialize(housesJson, toursJson, $("#tour-tracker-main-content"));
 	});
+	// $(document).foundation();
+	// $('.accordion').foundation({bindings: 'events'});
 </script>

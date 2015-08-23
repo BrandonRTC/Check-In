@@ -2,9 +2,9 @@ $(".houses.index").ready(function(){
 	BrandonApp.Views.HouseHour = Backbone.View.extend({
 		template: JST["houses/hour"],
 
-		tagName: "ul",
+		tagName: "li",
 
-		className: "small-12 columns small-centered",
+		className: "small-12 columns small-centered accordion-navigation",
 
 		events: {
 			
@@ -12,43 +12,43 @@ $(".houses.index").ready(function(){
 
 		initialize: function(options){
 			this.tours = options.tours;
-			this.hour = this.formatHour(options.hour);
-			// console.log("options.hour", options.hour);
-			console.log("this.hour", this.hour);
+			this.hour = options.hour;
+			this.counter = options.hourCounter;
+			this.houseID = options.houseID;
 			this.subViews = [];
 		},
 
 		render: function(){
 			var that = this;
+
 			this.sortTours();
+
 			var content = this.template({
-				hour: this.hour,
+				hour: this.formatHour(this.hour),
+				counter: this.counter,
+				houseID: this.houseID,
 				tours: this.tours
 			});
 			this.$el.html(content);
 
 			for (var i = 1; i <= 4; i++){
-				if (that.tours[i-1]){
+				if (that.tours[i-1] && that.tours[i-1].get("timeslot") == i){
 					var created_at = that.tours[i-1].get("created_at");
-					//create other custom variables for template here (late, in progress, complete)
+					var completed = that.tours[i-1].get("completed");
 				} else {
 					var created_at = "not started";
-					//logic for missed or not started here
+					var completed = "";
 				}
 				var subView = new BrandonApp.Views.HouseTour({
-					created_at: created_at
+					created_at: created_at,
+					completed: completed,
+					hour: this.hour,
+					timeslot: i
 				});
 				this.subViews.push(subView);
-				this.$el.append(subView.render().$el);
+				this.$(".hour").append(subView.render().$el)
+				// this.$el.append(subView.render().$el);	
 			}
-
-			// for (var i = 1; i <= 4; i++){
-			// 	if (this.tours[i-1] && this.tours[i-1].timeslot == 1) {
-			// 		var subView = new BrandonApp.Views.HouseTour({});
-			// 	} else {
-					
-			// 	}
-			// }
 
 			return this;
 		},

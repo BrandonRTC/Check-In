@@ -11,6 +11,7 @@ $(".houses.index").ready(function(){
 				$rootEl: $rootEl
 			});
 			Backbone.history.start();
+			$(document).foundation();
 		}
 	}
 });

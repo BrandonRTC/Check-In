@@ -47,26 +47,30 @@ button.huge, .button.huge {
   font-size: 1.6875rem;  
 }
 
-/*tour statuses, etc*/
+/*tour tracker, statuses, etc*/
+
+.panel.house {
+  margin-top: 1.25rem;
+}
 
 .panel.custom {
   background-color: #bbb;
-}
-
-.panel.old-tour-incomplete {
-  background-color: #fffc61;
-}
-
-.panel.tour-not-started {
-  background-color: gray;
 }
 
 .panel.tour-complete {
   background-color: green;
 }
 
+.panel.old-tour-incomplete {
+  background-color: #fffc61;
+}
+
 .panel.tour-incomplete {
   background-color: red;
+}
+
+.panel.tour-not-started {
+  background-color: gray;
 }
 
 .panel.tour-late {

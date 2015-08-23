@@ -21,7 +21,9 @@ module BrandonApp
     # config.i18n.default_locale = :de
 
 
-    #perhaps add the other parameters mentioned by aA and not Qtracks
+
+    # config.time_zone = "Eastern Time (US & Canada)"
+
     config.paperclip_defaults = {
         storage: :s3,
         s3_credentials: {
@@ -34,6 +36,3 @@ module BrandonApp
     config.assets.initialize_on_precompile = false
   end
 end
-
-# config.time_zone = "Eastern Time (US & Canada)"
-# #HOPE THIS WORKS!

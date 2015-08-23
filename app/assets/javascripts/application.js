@@ -14,6 +14,7 @@
 //= require jquery.serializejson.min
 //= require jquery_ujs
 //= require jquery-readyselector
+//= require modernizr
 //= require llqrcode.min
 //= require qr_script
 //= require underscore

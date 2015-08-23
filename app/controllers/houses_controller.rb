@@ -4,7 +4,12 @@ class HousesController < ApplicationController
 
 	# for monitoring in progress tours
 	def index		
-		time = get_shift_start
+		# for production
+		# time = get_shift_start
+
+		# for development
+		time = Time.now.change({hour: 12})
+
 		@houses = House.all
 		@tours = Tour.where(created_at: time..Time.now)
 		
