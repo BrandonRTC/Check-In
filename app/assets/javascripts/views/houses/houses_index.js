@@ -2,6 +2,8 @@ $(".houses.index").ready(function(){
 	BrandonApp.Views.HouseIndex = Backbone.View.extend({
 		template: JST["houses/index"],
 
+		className: "row tracker",
+
 		events: {
 			
 		},

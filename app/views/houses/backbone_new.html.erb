@@ -13,6 +13,12 @@
 
 <script type="text/javascript">
 
+	$(document).ready(function(){
+		var housesJson = JSON.parse($("#houses-json").html());
+		var toursJson = JSON.parse($("#tours-json").html());
+		BrandonApp.initialize(housesJson, toursJson, $("#tour-tracker-main-content"));
+	});
+	
 	// $(document).ready(function(){
 	// 	var deferred = $.Deferred();
 	// 	var housesJson = JSON.parse($("#houses-json").html());
@@ -22,13 +28,4 @@
 	// 	deferred.resolve(housesJson, toursJson, $("#tour-tracker-main-content"));
 	// });
 
-
-
-	$(document).ready(function(){
-		var housesJson = JSON.parse($("#houses-json").html());
-		var toursJson = JSON.parse($("#tours-json").html());
-		BrandonApp.initialize(housesJson, toursJson, $("#tour-tracker-main-content"));
-	});
-	// $(document).foundation();
-	// $('.accordion').foundation({bindings: 'events'});
 </script>

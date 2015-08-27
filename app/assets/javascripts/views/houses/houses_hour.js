@@ -4,7 +4,7 @@ $(".houses.index").ready(function(){
 
 		tagName: "li",
 
-		className: "small-12 columns small-centered accordion-navigation",
+		className: "accordion-navigation",
 
 		events: {
 			

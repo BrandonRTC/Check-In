@@ -24,7 +24,7 @@ $(".houses.index").ready(function(){
 			});
 			this.$el.html(content);
 			var status = this.getStatus();
-			// this.$el.addClass("callout");
+			this.$el.addClass(status);
 			return this;
 		},
 

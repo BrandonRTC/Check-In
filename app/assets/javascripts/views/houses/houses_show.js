@@ -4,7 +4,7 @@ $(".houses.index").ready(function(){
 
 		tagName: "div",
 
-		className: "panel row custom house",
+		className: "panel row custom house small-2",
 
 		events: {
 			
