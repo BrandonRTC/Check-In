@@ -9,7 +9,9 @@
 		<h4>Report</h4>
 		<%= form_tag(report_check_ins_url, {format: :csv, method: :post}) do %>
 			<%= select_tag "report[house]", options_from_collection_for_select(@houses, "id", "house_name") %>
+			<%= label(:report, :start, "Start Date") %>
 			<%= date_field_tag "report[start]" %>
+			<%= label(:report, :end, "End Date") %>
 			<%= date_field_tag "report[end]" %>
 			<%= submit_tag "Submit", {class: "button small"} %>
 		<% end %>
