@@ -28,7 +28,16 @@ class CheckInsController < ApplicationController
 	# end
 
 	def index
+		@houses = House.all
 		@check_ins = CheckIn.order(:tour_id).order(:created_at).page(params[:page])
+	end
+
+	def report
+		@check_ins = House.find(report_params[:house])
+											.check_ins
+											.where(created_at: report_params[:start]..report_params[:end])
+											
+		send_data @check_ins.to_csv
 	end
 
 	private
@@ -37,4 +46,7 @@ class CheckInsController < ApplicationController
 		params.require(:room).permit(:check_in => [:status, :initials, :comment, :room_id])
 	end
 
+	def report_params
+		params.require(:report).permit(:house, :start, :end)
+	end
 end

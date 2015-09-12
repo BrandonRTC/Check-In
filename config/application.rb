@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
+require 'csv'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -21,8 +21,7 @@ module BrandonApp
     # config.i18n.default_locale = :de
 
 
-
-    # config.time_zone = "Eastern Time (US & Canada)"
+    config.time_zone = "Eastern Time (US & Canada)"
 
     config.paperclip_defaults = {
         storage: :s3,

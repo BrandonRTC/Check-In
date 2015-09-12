@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   resources :check_ins, only: [:index, :destroy]
 
+  resources :check_ins do 
+    post :report, on: :collection
+  end
+
   #API ROUTES
 
   namespace :api, defaults: {format: :json} do

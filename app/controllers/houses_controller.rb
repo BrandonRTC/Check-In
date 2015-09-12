@@ -10,10 +10,14 @@ class HousesController < ApplicationController
 		# for development
 		# time = Time.now.change({hour: 12})
 
-		@houses = House.all
-		@tours = Tour.where(created_at: time..Time.now)
-		
-		render :backbone_new
+		# for regular log view
+		@houses = House.all.includes(:tours).where({created_at: time..Time.now})
+		render :index
+
+		# for backbone view
+		# @houses = House.all
+		# @tours = Tour.where(created_at: time..Time.now)
+		# render :backbone_new
 	end
 
 end

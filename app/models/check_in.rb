@@ -8,6 +8,15 @@ class CheckIn < ActiveRecord::Base
 	validates :tour_id, presence: true
 	validates :room_id, presence: true
 
+	def self.to_csv
+		CSV.generate do |csv|
+			csv << column_names
+			all.each do |check_in|
+				csv << check_in.attributes.values_at(*column_names)
+			end
+		end
+	end
+
 	# validate :validate_house
 	# validate :validate_new_room
 
