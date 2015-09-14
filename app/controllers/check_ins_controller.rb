@@ -33,11 +33,21 @@ class CheckInsController < ApplicationController
 	end
 
 	def report
+		start_date = Date.parse(report_params[:start])
+		end_date = Date.parse(report_params[:end])
+
+		if end_date < start_date
+			new_start = end_date
+			end_date = start_date
+			start_date = new_start
+		end
+
 		@check_ins = House.find(report_params[:house])
 											.check_ins
-											.where(created_at: report_params[:start]..report_params[:end])
-											
+											.where(created_at: start_date..end_date + 1.day)
+																					
 		send_data @check_ins.to_csv
+		# render text: @check_ins.to_csv
 	end
 
 	private

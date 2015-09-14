@@ -19,22 +19,6 @@
 				<input type="hidden" name="tour[house_id]" value="<%= current_user.houses.first.id %>">
 			<% end %>
 
-			<div class="row">
-				<div class="small-1 columns">
-					<label for="late-time-slot"><%= @timeslots.keys.first %></label>
-				</div>
-				<div class="small-5 columns">
-					<input type="radio" id="late-time-slot" name="tour[timeslot]" value="<%= @timeslots.values.first %>">
-				</div>
-
-				<div class="small-1 columns">
-					<label for="current-time-slot"><%= @timeslots.keys.last %></label>
-				</div>
-				<div class="small-5 columns">
-					<input type="radio" id="current-time-slot" name="tour[timeslot]" value="<%= @timeslots.values.last %>">
-				</div>
-			</div>
-
 			<label for="take-picture">Take starting selfie</label>
 			<input type="file" name="tour[start_img]" id="take-picture" accept='image/png, image/jpeg'>
 
