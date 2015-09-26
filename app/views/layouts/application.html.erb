@@ -7,6 +7,7 @@
 	  <title>Brandon BedCheck</title>
 
     <%= stylesheet_link_tag    "application" %>
+    <link href="/assets/print.css" media="print" rel="stylesheet" />
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
@@ -21,10 +22,10 @@
 				</ul>
 
 				<section class="top-bar-section">
-					<ul class="left">
+<!-- 					<ul class="left">
 						<li class="divider"></li>
 						<li><a href="#"><%= current_user.username %></a></li>
-					</ul>
+					</ul> -->
 
 					<ul class="right">
 						<li class="divider"></li>

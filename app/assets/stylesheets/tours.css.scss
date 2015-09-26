@@ -1,3 +1,16 @@
 // Place all the styles related to the tours controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.tour-table > tbody > tr > td > #broken-image {
+	display: none;
+}
+
+.tour-table > tbody > tr > td > span#hide-span {
+	display: none;
+}
+
+.tour-table > tbody > tr > td > span#show-span {
+	display: block;
+}

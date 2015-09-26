@@ -46,7 +46,7 @@ class CheckInsController < ApplicationController
 											.check_ins
 											.where(created_at: start_date..end_date + 1.day)
 																					
-		send_data @check_ins.to_csv
+		send_data @check_ins.to_csv, type: "text/csv", filename: "report.csv", dispostion: "attachment"
 		# render text: @check_ins.to_csv
 	end
 

@@ -103,7 +103,7 @@ User.create({
 #PERMISSIONS
 
 i = 1
-7.times do 
+8.times do 
 
 	Permission.create({
 		user_id: User.first.id,
@@ -124,17 +124,28 @@ i = 1
 end
 
 #BEWARE HARD CODED STARTING IDS!
-#(probably maybe should cook up a more robust way to assign ids)
+#probably should think up a more robust way to assign ids
 q = 4
 z = 1
 
-14.times do Permission.create({
+Permission.create({
+	user_id: q + 12
+	house_id: 7
+})
+
+Permission.create({
+	user_id: q + 13
+	house_id: 8
+})
+
+12.times do Permission.create({
 	user_id: q,
 	house_id: z
 	})
 	z+=1 if q % 2 == 1
 	q+=1
 end
+
 
 #HOUSES
 
@@ -163,31 +174,37 @@ House.create({
 })
 
 House.create({
-	house_name: "Nobscot",
+	house_name: "Nobscot1",
 })
 
-#ROOMS; figure out how to make this less brittle
+House.create({
+	house_name: "Nobscot2",
+})
 
+#ROOMS
+
+# arrays of bed numbers per room (in order)
 h1 = [1,2,4,2,4]
 h2 = [1,1,4,1,4]
 h3 = [1,1,3,3,2,1,4]
 h4 = [3,4,1,1,1,1,2,2]
 h5 = [2,2,1,1,1,1,1]
 cb = [3,2,4,2]
-ns = [2,3,2,4]
+ns1 = [4]
+ns2 = [2,3,2]
 
 5.times do |i|
-Room.create({
-	room_name: "H1Room#{i+1}",
-	house_id: 1,
-	num_beds: h1[i]
-})
+	Room.create({
+		room_name: "H1Room#{i+1}",
+		house_id: 1,
+		num_beds: h1[i]
+	})
 
-Room.create({
-	room_name: "H2Room#{i+1}",
-	house_id: 2,
-	num_beds: h2[i]
-})
+	Room.create({
+		room_name: "H2Room#{i+1}",
+		house_id: 2,
+		num_beds: h2[i]
+	})
 end
 
 7.times do |i|
@@ -218,10 +235,18 @@ end
 		house_id: 6,
 		num_beds: cb[i]
 	})
+end
 
+3.times do |i|
 	Room.create({
-		room_name: "NSRoom#{i+1}",
-		house_id: 7,
-		num_beds: ns[i]
+		room_name: "NS2Room#{i+1}",
+		house_id: 8,
+		num_beds: ns2[i]
 	})
 end
+
+Room.create({
+	room_name: "NS1Room4",
+	house_id: 7,
+	num_beds: ns1[0]
+})

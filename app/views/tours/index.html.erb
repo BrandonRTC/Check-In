@@ -4,9 +4,16 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	var brokenImage = function(image){
+		$(image).attr("id", "broken-image");
+		$(image).next().attr("id", "show-span");
+	}
+</script>
+
 <div class="row">
 	<div class="small-10 columns small-centered">
-		<table>
+		<table class="tour-table">
 			<thead>
 				<tr>
 					<td>House</td>
@@ -21,49 +28,25 @@
 					<tr>
 						<td><%= t.house.house_name %></td>
 						<td><%= format_date_time(t.created_at) %></td>
-						<td><%= image_tag t.start_img.url(:small) %></td>
+						<td>
+							<%= image_tag t.start_img.url(:small), id:"", onerror: "brokenImage(this)" %>
+							<span id="hide-span">
+								<h3>Incomplete</h3>
+							</span>
+						</td>
 						<td><%= format_date_time(t.updated_at) %></td>
-						<td><%= image_tag t.end_img.url(:small) %></td>
+						<td>
+							<%= image_tag t.end_img.url(:small), id:"", onerror: "brokenImage(this)" %>
+							<span id="hide-span">
+								<h3>Incomplete</h3>
+							</span>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
 	</div>
 </div>
-
-<!-- <div class="row">
-	<div class="small-12 columns small-centered">
-		<ul class="no-bullet">
-			<% @tours.each do |t| %>
-				<li class="panel">
-					<div class="row">
-						<section class="small-12 columns panel">
-							House: <%= t.house.house_name %>
-						</section>
-					</div>
-
-					<div class="row">
-						<section class="small-6 columns panel">
-							Begun: <%= format_date_time(t.created_at) %>
-						</section>
-						<section class="small-6 columns">
-							<%= image_tag t.start_img.url(:small) %>
-						</section>
-					</div>
-
-					<div class="row">
-						<section class="small-6 columns panel">
-							Finished: <%= format_date_time(t.updated_at) %>
-						</section>
-						<section class="small-6 columns">
-							<%= image_tag t.end_img.url(:small) %>
-						</section>
-					</div>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-</div> -->
 
 <div id="paginateTours">
 	<%= paginate @tours %>

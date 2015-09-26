@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 		)
 
 		if @user.nil?
-			flash.now[:errors] = "Invalid username or password"
+			flash.now[:errors] = ["Invalid username or password"]
 			render :new
 		else
 			login!(@user)
