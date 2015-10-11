@@ -1,3 +1,95 @@
 // Place all the styles related to the houses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#tour-begin-time {
+	float:left;
+	padding: 5px;
+}
+
+#tour-end-time {
+	padding: 5px;
+	float:right;
+}
+
+.tour-wrapper {
+	border: 1px solid gray;
+}
+
+/*tour tracker, statuses, etc*/
+
+.hour {
+  margin-left: 0;
+}
+
+#tour-tracker-main-content > .tracker {
+  max-width: 65rem;
+  /*max-width: 83rem;*/
+  /*max-width: 100rem;*/
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.accordion-navigation > .content {
+  padding: .46875rem !important;
+}
+
+.content > ul > li {
+  padding: .46875rem;
+  margin-bottom: .46875rem;
+}
+
+.content > ul > li:last-child {
+  margin-bottom: 0;
+}
+
+.shift.accordion {
+  padding-bottom: .9375rem;
+}
+
+.tracker > .house {
+  margin-top: 1.25rem;
+  margin-left: .1rem !important;
+  margin-right: .1rem !important;
+  padding: .1rem;
+  float: left;
+}
+
+.custom {
+  /*background-color: #bbb;*/
+  background-color: #ccc;
+}
+
+.tour-complete {
+  /*background-color: green;*/
+  /*background-color: #098C09;*/
+  /*background-color: #16A916;*/
+  /*background-color: #67E300;*/
+  background-color: #1DD300;
+}
+
+.old-tour-incomplete {
+  background-color: #fffc61;
+}
+
+.tour-incomplete {
+  /*background-color: red;*/
+  background-color: #FF1E1E;
+}
+
+.tour-not-started {
+  /*background-color: #ccc*/
+  background-color: #f2f2f2;
+
+}
+
+.tour-late {
+  /*background-color: orange;*/
+  /*background-color: #AF4C0B;*/
+  background-color: #FF8300;
+}
+
+.tour-in-progress {
+  background-color: yellow;
+  /*background-color: #D4B41C;*/
+}

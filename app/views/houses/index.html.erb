@@ -10,26 +10,22 @@
 			<section class="panel">
 				
 				<div class="row">
-					<div class="small-9 columns small-centered"><h4><%= h.house_name %></h4></div>
+					<div class="small-3 columns small-centered"><h4><%= h.house_name %></h4></div>
 				</div>
 
 				<ul class="no-bullet">
 					<% h.tours.each do |t| %>
 
 						<% if t.completed? %>
-							<% color = "tour-complete" %>
+							<% status = "tour-complete" %>
 						<% else %>
-							<% color = "tour-incomplete" %>
+							<% status = "tour-incomplete" %>
 						<% end %>
 
 						<li>
-							<div class="row">
-								<div class="small-9 columns panel small-centered <%= color %>">
-									<div class="row">
-										<div class="small-6 columns">Begun: <%= format_time(t.created_at) %></div>
-										<div class="small-3 columns">Complete: <%= t.completed %></div>
-									</div>
-								</div>
+							<div class="<%= status %> clearfix tour-wrapper">
+								<div id="tour-begin-time">Begun: <%= format_time(t.created_at) %></div>
+								<div id="tour-end-time">Complete: <%= t.completed %></div>
 							</div>
 						</li>
 					<% end %>

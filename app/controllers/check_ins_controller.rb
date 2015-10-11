@@ -29,7 +29,7 @@ class CheckInsController < ApplicationController
 
 	def index
 		@houses = House.all
-		@check_ins = CheckIn.order(:tour_id).order(:created_at).page(params[:page])
+		@check_ins = CheckIn.order(tour_id: :desc).order(created_at: :desc).page(params[:page])
 	end
 
 	def report
