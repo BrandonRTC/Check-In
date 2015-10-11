@@ -13,7 +13,11 @@
 }
 
 .tour-wrapper {
-	border: 1px solid gray;
+	border-bottom: 1px solid #010101;
+}
+
+.tour-wrapper:last-of-type {
+  border-bottom: 0px;
 }
 
 /*tour tracker, statuses, etc*/
@@ -61,11 +65,16 @@
 }
 
 .tour-complete {
-  /*background-color: green;*/
-  /*background-color: #098C09;*/
-  /*background-color: #16A916;*/
-  /*background-color: #67E300;*/
-  background-color: #1DD300;
+  background-color: none;
+}
+
+.tour-wrapper .tour-complete:before {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  content: "\f00c";
+  float: left;
+  padding: 5px;
+  color: #43AC6A;
 }
 
 .old-tour-incomplete {
@@ -73,8 +82,16 @@
 }
 
 .tour-incomplete {
-  /*background-color: red;*/
-  background-color: #FF1E1E;
+  background-color: none;
+}
+
+.tour-wrapper .tour-incomplete:before {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  content: "\f00d";
+  float: left;
+  padding: 5px;
+  color: #f04124;
 }
 
 .tour-not-started {

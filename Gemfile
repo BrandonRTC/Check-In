@@ -49,6 +49,7 @@ group :development do
 	gem 'meta_request'
 end
 
+gem 'font-awesome-rails'
 gem'figaro'
 gem 'paperclip'
 gem 'aws-sdk'

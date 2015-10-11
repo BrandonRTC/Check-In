@@ -22,10 +22,10 @@
 							<% status = "tour-incomplete" %>
 						<% end %>
 
-						<li>
-							<div class="<%= status %> clearfix tour-wrapper">
+						<li class="tour-wrapper">
+							<div class="<%= status %> clearfix">
 								<div id="tour-begin-time">Begun: <%= format_time(t.created_at) %></div>
-								<div id="tour-end-time">Complete: <%= t.completed %></div>
+								<div id="tour-end-time">Complete: <%= t.completed ? "Yes" : "No" %></div>
 							</div>
 						</li>
 					<% end %>
