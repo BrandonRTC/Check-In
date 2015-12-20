@@ -44,3 +44,25 @@ button.huge, .button.huge {
 li {
   list-style-type: none;
 }
+
+/* overrides top-bar-section from foundation*/
+
+.top-bar-section ul.large-visibility {
+	display: none;
+}
+
+@media (min-width: 1000px) {
+	.top-bar-section ul.large-visibility {
+		display: block;
+	}
+}
+
+.top-bar-section a.small-visibility {
+	display: none;
+}
+
+@media (max-width: 900px) {
+	.top-bar-section a.small-visibility {
+		display: block
+	}
+}

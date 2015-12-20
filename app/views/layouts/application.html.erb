@@ -24,7 +24,22 @@
             <li><a href="#"><%= current_user.username %></a></li>
           </ul>
 
-					<ul class="right">
+          <a href="#" data-dropdown="supervisor-menu" aria-controls="supervisor-menu" aria-expanded="false" class="right small-visibility">Supervisor Menu</a>
+          <ul id="supervisor-menu" class="f-dropdown right">
+            <li><a href="<%= user_url(current_user.id) %>">New Tour</a></li>
+            <li><a href="<%= houses_url %>">In Progress Tours</a></li>
+            <li><a href="<%= check_ins_url %>">Check-In Review</a></li>
+            <li><a href="<%= tours_url %>">Tour Review</a></li>
+            <li class="has-form">
+              <form action="<%= session_url %>" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <%= auth_token %>
+                <button class="button tiny alert">Logout</button>
+              </form>
+            </li>
+          </ul>
+
+					<ul class="right large-visibility">
 						<li class="divider"></li>
 						<li><a href="<%= user_url(current_user.id) %>">New Tour</a></li>
 						<li class="divider"></li>
