@@ -12,9 +12,8 @@ x * file per style scope.
  *
  *= require_tree .
  *= require_self
- *= require normalize
  *= require font-awesome
- *= require foundation
+ *= require foundation.min
  */
 
 #qr-canvas {

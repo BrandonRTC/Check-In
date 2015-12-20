@@ -14,7 +14,9 @@
 //= require jquery.serializejson.min
 //= require jquery_ujs
 //= require jquery-readyselector
-//= require modernizr
+//= require brandonFoundation/vendor/what-input.min
+//= require brandonFoundation/foundation.min
+//= require brandonFoundation/app
 //= require llqrcode.min
 //= require qr_script
 //= require underscore
