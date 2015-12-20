@@ -103,7 +103,7 @@ User.create({
 #PERMISSIONS
 
 i = 1
-8.times do 
+8.times do
 
 	Permission.create({
 		user_id: User.first.id,
@@ -129,12 +129,12 @@ q = 4
 z = 1
 
 Permission.create({
-	user_id: q + 12
+	user_id: q + 12,
 	house_id: 7
 })
 
 Permission.create({
-	user_id: q + 13
+	user_id: q + 13,
 	house_id: 8
 })
 
