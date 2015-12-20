@@ -1,3 +1,10 @@
+<script type="text/javascript">
+	var brokenImage = function(image){
+		$(image).attr("id", "broken-image");
+		$(image).next().attr("id", "show-span");
+	}
+</script>
+
 <div class="row">
 	<div class="small-5 columns small-centered">
 		<h2>Tours In Progress</h2>
@@ -8,7 +15,7 @@
 	<div class="small-10 columns small-centered">
 		<% @houses.each do |h| %>
 			<section class="panel">
-				
+
 				<div class="row">
 					<div class="small-3 columns small-centered"><h4><%= h.house_name %></h4></div>
 				</div>
@@ -24,8 +31,11 @@
 
 						<li class="tour-wrapper">
 							<div class="<%= status %> clearfix">
-								<div id="tour-begin-time">Begun: <%= format_time(t.created_at) %></div>
-								<div id="tour-end-time">Complete: <%= t.completed ? "Yes" : "No" %></div>
+								<div class="tour-begin-time">Begun: <%= format_time(t.created_at) %></div>
+								<% if t.competed? %>
+									<div class="tour-end-time">Ended: <%= format_time(t.updated_at) %></div>
+								<% end %>
+								<div class="tour-completion">Complete: <%= t.completed ? "Yes" : "No" %></div>
 							</div>
 						</li>
 					<% end %>

@@ -2,12 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#tour-begin-time {
+.tour-begin-time {
 	float:left;
 	padding: 5px;
 }
 
-#tour-end-time {
+.tour-end-time {
+	float: left;
+	padding: 5px;
+	margin-left: 10px;
+}
+
+.tour-completion {
 	padding: 5px;
 	float:right;
 }
