@@ -1,28 +1,20 @@
-<div class="row">
-	<div class="small-8 columns small-centered">
-		<h2>Start Tour</h2>
-	</div>
-</div>
+<h2>Start Tour</h2>
 
-<div class="row">
-	<div class="small-8 columns small-centered">
-		<form action="<%= tours_url %>" method="post" enctype="multipart/form-data">
-			<%= auth_token %>
+<form action="<%= tours_url %>" method="post" enctype="multipart/form-data">
+	<%= auth_token %>
 
-			<% if current_user.superuser? %>
-				<select name="tour[house_id]" id="admin_house_select">
-					<% @houses.each do |h| %>
-						<option value="<%= h.id %>"><%= h.house_name %></option>
-					<% end %>
-				</select>
-			<% else %>
-				<input type="hidden" name="tour[house_id]" value="<%= current_user.houses.first.id %>">
+	<% if current_user.superuser? %>
+		<select name="tour[house_id]" id="admin_house_select">
+			<% @houses.each do |h| %>
+				<option value="<%= h.id %>"><%= h.house_name %></option>
 			<% end %>
+		</select>
+	<% else %>
+		<input type="hidden" name="tour[house_id]" value="<%= current_user.houses.first.id %>">
+	<% end %>
 
-			<label for="take-picture">Take starting selfie</label>
-			<input type="file" name="tour[start_img]" id="take-picture" accept='image/png, image/jpeg'>
+	<label for="take-picture">Take starting selfie</label>
+	<input type="file" name="tour[start_img]" id="take-picture" accept='image/png, image/jpeg' capture>
 
-			<input type="submit" value="Upload" class="button">
-		</form>
-	</div>
-</div>
+	<input type="submit" value="Upload" class="button">
+</form>

@@ -12,9 +12,9 @@ x * file per style scope.
  *
  *= require_tree .
  *= require_self
- *= require normalize
  *= require font-awesome
  *= require foundation
+ *= require foundation_overrides
  */
 
 #qr-canvas {
@@ -32,24 +32,50 @@ x * file per style scope.
 	color: red;
 }
 
-.check-in-table > tbody > tr:nth-child(even) {
-  background-color: #ddd;
-}
-
-.check-in-table > tbody > tr:nth-child(odd) {
-  background-color: #fff;
-}
-
 button.huge, .button.huge {
   padding-top: 1.375rem;
   padding-right: 2.75rem;
   padding-bottom: 1.4375rem;
   padding-left: 2.75rem;
-  font-size: 1.6875rem;  
+  font-size: 1.6875rem;
 }
 
-/*no bullets */
-
+/* no bullets */
 li {
   list-style-type: none;
+}
+
+/* breakpoints */
+
+.medium-breakpoint {
+		display: none;
+
+		@media (max-width: 900px) {
+				display: block;
+		}
+}
+
+.wide-breakpoint {
+		display: none;
+
+		@media (min-width: 901px) {
+				display: block;
+		}
+}
+
+/* User Show / New Tour */
+
+.button.huge.new-tour-button {
+		margin: 20px auto;
+		display: block;
+		width: 210px;
+}
+
+/* Header and block centering */
+
+h2.header {
+		margin: 20px auto;
+		display: block;
+		width: 400px;
+		text-align: center;
 }
