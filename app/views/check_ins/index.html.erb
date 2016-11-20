@@ -30,18 +30,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @check_ins.each do |c| %>	
+				<% @check_ins.each do |c| %>
 					<tr>
 						<td><%= c.status %></td>
 						<td>
-							<% unless c.initials.empty? %>
+							<% unless c.initials.nil? %>
 								<%= c.initials %>
 							<% else %>
 								N/A
 							<% end %>
 						</td>
 						<td>
-							<% unless c.comment.empty? %>
+							<% unless c.comment.nil? %>
 								<%= c.comment %>
 							<% else %>
 								N/A

@@ -10,19 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery.serializejson.min
 //= require jquery_ujs
 //= require jquery-readyselector
-//= require brandonFoundation/vendor/what-input.min
-//= require brandonFoundation/foundation.min
-//= require brandonFoundation/app
 //= require llqrcode.min
 //= require qr_script
 //= require underscore
 //= require backbone
 //= require brandon_check_in
 //= require brandon_tracker
+//= require foundation
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

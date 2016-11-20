@@ -27,6 +27,14 @@
 		</div>
 	</div> -->
 
+	<button onclick="myFunction()">Click meh</button>
+	<script type="text/javascript">
+		var myFunction = function(){
+				console.log("fired");
+				window.BrandonApp.router.currentView.swapCheckInForms("H1Room2");
+		}
+	</script>
+
 	<div class="row">
 		<div class="small-8 columns small-centered">
 			<div class="row">
@@ -45,7 +53,7 @@
 				<button class="submit" id="check_room">Submit Room</button>
 			</div>
 		</div>
-		
+
 	</form>
 
 	<canvas id="qr-canvas" width="800" height="600"></canvas>

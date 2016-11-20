@@ -5,43 +5,60 @@
 	}
 </script>
 
-<div class="row">
-	<div class="small-5 columns small-centered">
-		<h2>Tours In Progress</h2>
-	</div>
-</div>
+<h2 class="header">Tours In Progress</h2>
 
-<div class="row">
-	<div class="small-10 columns small-centered">
-		<% @houses.each do |h| %>
-			<section class="panel">
+<% @houses.each do |h| %>
+	<section class="panel" style="background-color:gray;width:900px;margin:20px auto;">
 
-				<div class="row">
-					<div class="small-3 columns small-centered"><h4><%= h.house_name %></h4></div>
-				</div>
+		<h4 style="margin:auto;width:250px;text-align:center;"><%= h.house_name %></h4>
+		<table style="width:900px;">
+			<thead>
+				<tr>
+					<td></td>
+					<td>Begun</td>
+					<td>Ended</td>
+					<td>Complete?</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% h.tours.each do |t| %>
 
-				<ul class="no-bullet">
-					<% h.tours.each do |t| %>
+				<% if t.completed? %>
+				<% status = "tour-complete" %>
+				<% else %>
+				<% status = "tour-incomplete" %>
+				<% end %>
 
+				<tr class="tour-wrapper">
+					<td class="<%= status %>"></td>
+					<td><%= format_time(t.created_at) %></td>
+					<td><%= format_time(t.updated_at) %></td>
+					<td><%= t.completed ? "Yes" : "No" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+		<!-- <ul class="no-bullet">
+			<% h.tours.each do |t| %>
+
+				<% if t.completed? %>
+					<% status = "tour-complete" %>
+				<% else %>
+					<% status = "tour-incomplete" %>
+				<% end %>
+
+				<li class="tour-wrapper">
+					<div class="<%= status %> clearfix">
+						<div class="tour-begin-time">Begun: <%= format_time(t.created_at) %></div>
 						<% if t.completed? %>
-							<% status = "tour-complete" %>
-						<% else %>
-							<% status = "tour-incomplete" %>
+							<div class="tour-end-time">Ended: <%= format_time(t.updated_at) %></div>
 						<% end %>
+						<div class="tour-completion">Complete: <%= t.completed ? "Yes" : "No" %></div>
+					</div>
+				</li>
+			<% end %>
+		</ul> -->
 
-						<li class="tour-wrapper">
-							<div class="<%= status %> clearfix">
-								<div class="tour-begin-time">Begun: <%= format_time(t.created_at) %></div>
-								<% if t.completed? %>
-									<div class="tour-end-time">Ended: <%= format_time(t.updated_at) %></div>
-								<% end %>
-								<div class="tour-completion">Complete: <%= t.completed ? "Yes" : "No" %></div>
-							</div>
-						</li>
-					<% end %>
-				</ul>
-
-			</section>
-		<% end %>
-	</div>
-</div>
+	</section>
+<% end %>

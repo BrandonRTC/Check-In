@@ -14,38 +14,44 @@
 
   <body class="<%= controller_name %> <%= action_name %>">
 		<% if !current_user.nil? %>
-			<nav class="top-bar" data-topbar role="navigation">
-				<section class="top-bar-section">
-          <ul class="title-area left">
-            <li class="name">
-              <h1><a href="#">Brandon Bed Check</a></h1>
-            </li>
-            <li class="divider"></li>
-            <li><a href="#"><%= current_user.username %></a></li>
-          </ul>
+			<div class="top-bar" data-topbar role="navigation">
+          <div class="top-bar-left">
+            <h4>Brandon Bed Check</h4>
+          </div>
 
-					<ul class="right">
-						<li class="divider"></li>
-						<li><a href="<%= user_url(current_user.id) %>">New Tour</a></li>
-						<li class="divider"></li>
-						<% if current_user.superuser? %>
-							<li><a href="<%= houses_url %>">In Progress Tours</a></li>
-							<li class="divider"></li>
-							<li><a href="<%= check_ins_url %>">Check-In Review</a></li>
-							<li class="divider"></li>
-							<li><a href="<%= tours_url %>">Tour Review</a></li>
-							<li class="divider"></li>
-						<% end %>
-						<li class="has-form">
-							<form action="<%= session_url %>" method="post">
-								<input type="hidden" name="_method" value="delete">
-								<%= auth_token %>
-								<button class="button tiny alert">Logout</button>
-							</form>
-						</li>
-					</ul>
-				</section>
-			</nav>
+          <div class="top-bar-right">
+            <ul class="menu wide-breakpoint">
+              <li><a href="<%= user_url(current_user.id) %>">New Tour</a></li>
+              <li class="divider">|</li>
+              <% if current_user.superuser? %>
+              <li><a href="<%= houses_url %>">In Progress Tours</a></li>
+              <li class="divider">|</li>
+              <li><a href="<%= check_ins_url %>">Check-In Review</a></li>
+              <li class="divider">|</li>
+              <li><a href="<%= tours_url %>">Tour Review</a></li>
+              <% end %>
+              <li class="has-form">
+                <form action="<%= session_url %>" method="post">
+                  <input type="hidden" name="_method" value="delete">
+                  <%= auth_token %>
+                  <button class="button small alert">Logout</button>
+                </form>
+              </li>
+            </ul>
+
+            <ul class="dropdown menu medium-breakpoint" data-dropdown-menu>
+              <li>
+                <a href="#">Admin</a>
+                <ul class="menu dropdown-submenu">
+                  <li><a href="<%= user_url(current_user.id)%>">New Tour</a></li>
+                  <li><a href="<%= houses_url %>">In Progress Tours</a></li>
+                  <li><a href="<%= check_ins_url %>">Check-In Review</a></li>
+                  <li><a href="<%= tours_url %>">Tour Review</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+			</div>
 		<% end %>
 
 		<% if flash.now[:errors] %>
@@ -61,5 +67,8 @@
 
     <%= yield %>
 
+    <%= javascript_include_tag "what-input.min" %>
+    <%= javascript_include_tag "foundation" %>
+    <%= javascript_include_tag "foundation_app" %>
   </body>
 </html>

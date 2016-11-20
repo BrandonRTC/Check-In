@@ -1,14 +1,4 @@
-<!-- <div class="row">
-	<div class="small-3 columns small-centered">
-		<h2>Next Tour</h2>
-	</div>
-</div> -->
-<br>
-<div class="row">
-	<div class="small-3 columns small-centered">
-		<a href="<%= new_tour_url %>" class="button huge" id="nextTourButton">Next Tour</a>
-	</div>
-</div>
+<a href="<%= new_tour_url %>" class="button huge new-tour-button" id="nextTourButton">Next Tour</a>
 
 <script type="text/javascript">
 	// 	writeDate();
@@ -30,7 +20,7 @@
 	  }
 	  if (minutes === 60){
 	  	minutes = 0
-	  	hours += 1	
+	  	hours += 1
 	  }
 	  var ampm = hours >= 12 ? 'pm' : 'am';
 	  hours = hours % 12;

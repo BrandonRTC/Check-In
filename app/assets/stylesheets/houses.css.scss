@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table thead td {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
+
 .tour-begin-time {
 	float:left;
 	padding: 5px;
