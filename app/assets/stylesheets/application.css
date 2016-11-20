@@ -32,24 +32,15 @@ x * file per style scope.
 	color: red;
 }
 
-.check-in-table > tbody > tr:nth-child(even) {
-  background-color: #ddd;
-}
-
-.check-in-table > tbody > tr:nth-child(odd) {
-  background-color: #fff;
-}
-
 button.huge, .button.huge {
   padding-top: 1.375rem;
   padding-right: 2.75rem;
   padding-bottom: 1.4375rem;
   padding-left: 2.75rem;
-  font-size: 1.6875rem;  
+  font-size: 1.6875rem;
 }
 
 /*no bullets */
-
 li {
   list-style-type: none;
 }

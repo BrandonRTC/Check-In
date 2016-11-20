@@ -2,7 +2,6 @@ $(".check_ins.new").ready(function(){
 	BrandonApp.Views.CheckInRoom = Backbone.View.extend({
 		template: JST["check_ins/room"],
 
-		// event needs to be updated when QR scanner implemented
 		events: {
 			'change #room_select' : 'swapCheckInForms',
 			'click #check_room' : 'submit',
@@ -23,7 +22,7 @@ $(".check_ins.new").ready(function(){
 		},
 
 		swapCheckInForms: function(name){
-			
+
 			var room = this.collection.findWhere({room_name: name})
 			var room_id = room.get("id");
 			var room_name = room.get("room_name");
@@ -32,7 +31,7 @@ $(".check_ins.new").ready(function(){
 			if (this.subViews.length > 0 || room_id === -1) {
 				this.removeCheckInForms();
 			}
-			
+
 			$("#room-name").html(room_name);
 
 			for (var i = 0; i < num_beds; i++) {

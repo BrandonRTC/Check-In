@@ -31,7 +31,7 @@ function initCanvas(ww,hh) {
     gCtx.clearRect(0, 0, w, h);
     imageData = gCtx.getImageData( 0,0,320,320);
 }
-    
+
 function captureToCanvas() {
     if(stype!=1)
         return;
@@ -73,9 +73,9 @@ function htmlEntities(str) {
 
 function read(a) {
     console.log("qr code scanned!", a);
-    // probably not the best way to hook the two parts up (ask aA?)
+    //NOTE: this is where the QA scanner hooks into the backbone events
     window.BrandonApp.router.currentView.swapCheckInForms(a);
-}	
+}
 
 function isCanvasSupported() {
   var elem = document.createElement('canvas');
@@ -96,7 +96,7 @@ function success(stream) {
     gUM=true;
     setTimeout(captureToCanvas, 500);
 }
-		
+
 function error(error) {
     gUM=false;
     return;
@@ -123,7 +123,7 @@ function setwebcam() {
 	// document.getElementById("result").innerHTML="- scanning -";
     if(stype==1)
     {
-        setTimeout(captureToCanvas, 500);    
+        setTimeout(captureToCanvas, 500);
         return;
     }
     var n=navigator;
@@ -182,11 +182,11 @@ function setwebcam() {
         v=document.getElementById("v");
         moz=true;
         n.mozGetUserMedia({video: true, audio: false}, success, error);
-        
+
     }
     else
         document.getElementById("outdiv").innerHTML = camhtml;
-    
+
     // document.getElementById("qrimg").src="images/upload2.jpg";
     // document.getElementById("webcamimg").src="images/webcam1.jpg";
     stype=1;

@@ -1,6 +1,6 @@
+//this wrapper is for submitting multiple check in models at once
 $(".check_ins.new").ready(function(){
 	BrandonApp.Models.CheckInWrapper = Backbone.Model.extend({
-
 		urlRoot: function(){
 			return "/api/tours/" + this.tour_id + "/check_ins";
 		},
@@ -8,6 +8,6 @@ $(".check_ins.new").ready(function(){
 		initialize: function(options){
 			this.tour_id = options.tour.get("id");
 		}
-		
+
 	});
 });
